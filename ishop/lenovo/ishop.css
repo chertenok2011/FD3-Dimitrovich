@@ -1,0 +1,20 @@
+.viewmodel-table .model-column {
+  display: inline-block;
+  width: 310px;
+  max-width: 350px;
+  padding: 6px 6px 20px 6px;
+  vertical-align: top;
+}
+.viewmodel-table .model-column .model {
+  margin: 0;
+  background-color: #fff;
+  font-weight: 400;
+  padding: 0 10px 8px 10px;
+  border: solid 2px #d7d7d7;
+  vertical-align: top;
+  min-height: 350px;
+}
+.viewmodel-table .model-column .model .model-image {
+  height: 120px;
+  margin: 0 auto;
+}
