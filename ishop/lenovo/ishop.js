@@ -4,7 +4,16 @@ var listProducts = React.createClass({
     
     propTypes: {
         title: React.PropTypes.string,
-        products: React.PropTypes.array
+        products: React.PropTypes.arrayOf(
+            React.PropTypes.shape({
+                name: React.PropTypes.string.isRequired,
+                code: React.PropTypes.number.isRequired,
+                count: React.PropTypes.number,
+                description: React.PropTypes.string.isRequired,
+                img: React.PropTypes.string.isRequired,
+                remainder: React.PropTypes.number,
+            })
+        )
     },
 
     render: function(){
@@ -15,9 +24,15 @@ var listProducts = React.createClass({
                     React.DOM.img( {className: 'model-image', src: v.img, alt: v.name, title: v.name}),
                     React.DOM.div( {className: 'model-description'},                             
                         React.DOM.p( {className: 'product-name'}, v.name),
-                        React.DOM.p( {className: 'product-count'}, v.count),
+                        React.DOM.p( {className: 'product-count'}, 
+                            React.DOM.span( null, v.count),
+                            React.DOM.span(null, '$')
+                        ),
                         React.DOM.p( {className: 'product-description'}, v.description),
-                        React.DOM.p( {className: 'product-remainder'}, v.remainder)
+                        React.DOM.p( {className: 'product-remainder'}, 
+                            React.DOM.span( null, 'Remainder: ' ),
+                            React.DOM.span( null, v.remainder )
+                        )
                     )
                 )
             ),
