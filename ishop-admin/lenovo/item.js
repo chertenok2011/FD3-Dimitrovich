@@ -8,16 +8,18 @@ var Item = React.createClass({
         count: React.PropTypes.number,
         description: React.PropTypes.string.isRequired,
         remainder: React.PropTypes.number,
-        workMode: React.PropTypes.number.isRequired
+        workMode: React.PropTypes.number.isRequired,
+        cbSelectedItem: React.PropTypes.func.isRequired,
+        cbDeletedItem: React.PropTypes.func.isRequired
     },
 
     editItem: function(EO){
-        console.log('edit');
-        this.props.cbSelectedItem(this.props.code, this.props.name, this.props.description, this.props.count, this.props.remainder);
+        this.props.cbSelectedItem( this.props.code, this.props.name, this.props.description, this.props.count, this.props.remainder );
     },
 
-    deleteItem: function(){
+    deleteItem: function(EO){
         console.log('delete');
+        this.props.cbDeletedItem(this.props.code);
     },
 
     render: function() {

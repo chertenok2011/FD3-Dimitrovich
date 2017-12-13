@@ -38,9 +38,58 @@ var listProducts = React.createClass({
         });
     },
 
+    nameChanged: function(newName){
+        this.setState({ selectedName: newName })
+    },
+
+    countChanged: function (newCount) {
+        this.setState({ selectedCount: Number(newCount) })
+    },
+
+    descriptionChanged: function(newDescription) {
+        this.setState({ selectedDescription: newDescription })
+    },
+
+    remainderChanged: function(newRemainder) {
+        this.setState({ selectedRemainder: Number(newRemainder) })
+    },
+
     newItem: function(mode){
-        console.log('new item');
-        this.setState( { })
+        this.setState({ workMode: 2 })
+    },
+
+    saveItem: function(){
+        console.log(this.state);
+        if (this.state.code != undefined ) {
+            this.props.products.forEach( item => {
+                if (this.state.selectedCode == item.code)
+                    item.name = this.state.selectedName;
+                    item.count = this.state.selectedCount;
+                    item.description = this.state.selectedDescription;
+                    item.remainder = this.state.selectedRemainder;
+            });
+        } 
+        else {
+            this.props.products.push({
+                name: this.state.selectedName,
+                count: this.state.selectedCount,
+                description: this.state.selectedDescription,
+                remainder: this.state.selectedRemainder
+            });
+        }
+        console.log(this.props.products);
+    },
+    
+    deleteItem: function(deleteCode){
+        this.props.products.forEach( (item, index) => {
+            if (deleteCode == item.code)
+                this.props.products.splice(index, 1)
+        });
+        console.log(this.props.products);
+    },        
+
+    closeForm: function(){
+        this.setState({ workMode: 0 })
     },
 
     render: function(){
@@ -54,7 +103,8 @@ var listProducts = React.createClass({
                 description: v.description,
                 remainder: v.remainder,
                 workMode: this.state.workMode,
-                cbSelectedItem: this.selectedItem
+                cbSelectedItem: this.selectedItem,
+                cbDeletedItem: this.deleteItem
             })           
         );
 
@@ -67,18 +117,18 @@ var listProducts = React.createClass({
                 React.DOM.div({ className: 'cell'},
                     React.createElement( Form, { 
                         workMode: this.state.workMode,
-                        //startWorkMode: this.props.startWorkMode,
-                        key: this.props.code,
-                        // code: this.props.code,
-                        // name: this.props.name,
-                        // count: this.props.count,
-                        // description: this.props.description,
-                        // remainder: this.props.remainder,
-                        selectedCode: this.state.code,
-                        selectedName: this.state.name,
-                        selectedDescription: this.state.description,
-                        selectedCount: this.state.count,
-                        selectedRemainder: this.state.remainder
+                        key: this.props.selectedCode,
+                        selectedCode: this.state.selectedCode,
+                        selectedName: this.state.selectedName,
+                        selectedDescription: this.state.selectedDescription,
+                        selectedCount: this.state.selectedCount,
+                        selectedRemainder: this.state.selectedRemainder,
+                        cbNameChanged: this.nameChanged,
+                        cbCountChanged: this.countChanged,
+                        cbDescriptionChanged: this.descriptionChanged,
+                        cbRemainderChanged: this.remainderChanged,
+                        cbSaveItem: this.saveItem,
+                        cbCloseForm: this.closeForm
                     })
                 )                
             ),
