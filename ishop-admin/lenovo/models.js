@@ -13,7 +13,8 @@ var listProducts = React.createClass({
                 remainder: React.PropTypes.number
             })
         ),
-        startWorkMode: React.PropTypes.number.isRequired
+        startWorkMode: React.PropTypes.number.isRequired,
+        defCounter: React.PropTypes.number.isRequired
     },
 
     getInitialState: function() {
@@ -23,11 +24,13 @@ var listProducts = React.createClass({
             selectedDescription: '',
             selectedCount: null,
             selectedRemainder: null,
-            workMode:this.props.startWorkMode,
+            workMode: this.props.startWorkMode,
+            products: this.props.products,
+            counter: this.props.defCounter
         };
     },
 
-    selectedItem: function(selectedCode, selectedName, selectedDescription, selectedCount, selectedRemainder){
+    editItem: function(selectedCode, selectedName, selectedDescription, selectedCount, selectedRemainder){
         this.setState({
             selectedCode: selectedCode,
             selectedName: selectedName,
@@ -55,37 +58,40 @@ var listProducts = React.createClass({
     },
 
     newItem: function(mode){
-        this.setState({ workMode: 2 })
+        this.setState({            
+            workMode: 2,
+            counter: this.state.counter++,
+            selectedCode: this.state.counter
+        })
     },
 
     saveItem: function(){
-        console.log(this.state);
-        if (this.state.code != undefined ) {
-            this.props.products.forEach( item => {
-                if (this.state.selectedCode == item.code)
-                    item.name = this.state.selectedName;
-                    item.count = this.state.selectedCount;
-                    item.description = this.state.selectedDescription;
-                    item.remainder = this.state.selectedRemainder;
-            });
-        } 
-        else {
-            this.props.products.push({
-                name: this.state.selectedName,
-                count: this.state.selectedCount,
-                description: this.state.selectedDescription,
-                remainder: this.state.selectedRemainder
-            });
-        }
-        console.log(this.props.products);
+        (this.state.workMode == 1)
+        ?this.state.products.forEach( item => {
+            if (this.state.selectedCode == item.code) {
+                item.name = this.state.selectedName;
+                item.count = this.state.selectedCount;
+                item.description = this.state.selectedDescription;
+                item.remainder = this.state.selectedRemainder;  
+                console.log(item);                     
+            }              
+        })
+        :this.state.products.push({
+            code: this.state.selectedCode,
+            name: this.state.selectedName,
+            count: this.state.selectedCount,
+            description: this.state.selectedDescription,
+            remainder: this.state.selectedRemainder
+        });          
+        this.setState( { products: this.state.products.slice(), workMode: 0 });
     },
     
     deleteItem: function(deleteCode){
-        this.props.products.forEach( (item, index) => {
+        this.state.products.forEach( (item, index) => {
             if (deleteCode == item.code)
-                this.props.products.splice(index, 1)
+                this.state.products.splice(index, 1)
         });
-        console.log(this.props.products);
+        this.setState( { products: this.state.products.slice(), workMode: 0 });
     },        
 
     closeForm: function(){
@@ -94,7 +100,7 @@ var listProducts = React.createClass({
 
     render: function(){
 
-        var productsMas = this.props.products.map(v=>
+        var productsMas = this.state.products.map(v=>
             React.createElement(Item, {
                 key: v.code,
                 code: v.code,
@@ -103,7 +109,7 @@ var listProducts = React.createClass({
                 description: v.description,
                 remainder: v.remainder,
                 workMode: this.state.workMode,
-                cbSelectedItem: this.selectedItem,
+                cbEditItem: this.editItem,
                 cbDeletedItem: this.deleteItem
             })           
         );

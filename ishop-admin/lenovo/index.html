@@ -25,10 +25,11 @@
   <script>
 
     var titleTable = 'List of products';
+    var defCounter = 1;
     var listArr = [
         {
             name: 'Yoga 920 (14") Vibes',
-            code: 920,
+            code: defCounter++,
             count: 670,
             description: 'Изящные и тонкие, но при этом невероятно производительные ноутбуки «2 в 1» с уникальным шарнирным механизмом по типу часового браслета и четырьмя режимами работы.',
             img: 'images/lenovo-laptop-yoga-900-13-400x300-win10.png',
@@ -36,23 +37,23 @@
         },
         {
             name: 'Yoga 700 (14")',
-            code: 700,
+            code: defCounter++,
             count: 850,
             description: 'Ультрасовременные ноутбуки-трансформеры с поддержкой четырех режимов использования отличаются непревзойденной производительностью и мобильностью в сочетании с другими передовыми возможностями.',
             img: 'images/lenovo-laptop-yoga-700-11-400x300-win10.png',
             remainder: 4
         },
-        {
-            name: 'Yoga 720 (15")',
-            code: 720,
-            count: 900,
-            description: 'Ультрасовременные ноутбуки-трансформеры с поддержкой четырех режимов использования отличаются непревзойденной производительностью и мобильностью в сочетании с другими передовыми возможностями.',
-            img: 'images/lenovo-laptop-yoga-700-11-400x300-win10.png',
-            remainder: 1
-        },
+        // {
+        //     name: 'Yoga 720 (15")',
+        //     code: defCounter++,
+        //     count: 900,
+        //     description: 'Ультрасовременные ноутбуки-трансформеры с поддержкой четырех режимов использования отличаются непревзойденной производительностью и мобильностью в сочетании с другими передовыми возможностями.',
+        //     img: 'images/lenovo-laptop-yoga-700-11-400x300-win10.png',
+        //     remainder: 1
+        // },
         {
             name: 'Yoga 510 (14", AMD)',
-            code: 510,
+            code: defCounter++,
             count: 690,
             description: 'Универсальный ПК высокой производительности с поддержкой четырех основных режимов.',
             img: 'images/lenovo-laptop-yoga-500-white-400x300-win10.png',
@@ -60,7 +61,7 @@
         },
         {
             name: 'Yoga 310 (11")',
-            code: 310,
+            code: defCounter++,
             count: 620,
             description: 'Доступные устройства с поддержкой четырех различных режимов для решения практически любых задач: ноутбук, консоль, презентация и планшет.',
             img: 'images/lenovo-laptop-yoga-300-11-400x300-win10.png',
@@ -70,7 +71,7 @@
     //var workMode = 0;
 
     ReactDOM.render(
-        React.createElement( listProducts, { title: titleTable, products: listArr, startWorkMode: 0 }), 
+        React.createElement( listProducts, { title: titleTable, products: listArr, startWorkMode: 0, defCounter: defCounter }), 
         document.getElementById('lenovo') 
     );
 

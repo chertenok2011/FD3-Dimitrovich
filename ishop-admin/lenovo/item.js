@@ -9,12 +9,12 @@ var Item = React.createClass({
         description: React.PropTypes.string.isRequired,
         remainder: React.PropTypes.number,
         workMode: React.PropTypes.number.isRequired,
-        cbSelectedItem: React.PropTypes.func.isRequired,
+        cbEditItem: React.PropTypes.func.isRequired,
         cbDeletedItem: React.PropTypes.func.isRequired
     },
 
     editItem: function(EO){
-        this.props.cbSelectedItem( this.props.code, this.props.name, this.props.description, this.props.count, this.props.remainder );
+        this.props.cbEditItem( this.props.code, this.props.name, this.props.description, this.props.count, this.props.remainder );
     },
 
     deleteItem: function(EO){

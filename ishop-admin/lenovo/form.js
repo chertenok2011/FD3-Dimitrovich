@@ -21,27 +21,22 @@ var Form = React.createClass({
     },
 
     countChanged: function(EO){
-        console.log(EO.target.value);
         this.props.cbCountChanged(EO.target.value);
     },
 
     descriptionChanged: function(EO){
-        console.log(EO.target.value);
         this.props.cbDescriptionChanged(EO.target.value);
     },
 
     remainderChanged: function(EO){
-        console.log(EO.target.value);
         this.props.cbRemainderChanged(EO.target.value);
     },
 
     saveItem: function(EO) {
-        console.log('save');
         this.props.cbSaveItem();
     },
 
     closeForm: function(EO) {
-        console.log('close');
         this.props.cbCloseForm();
     },
 
