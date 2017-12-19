@@ -10,6 +10,7 @@
 }
 .filter input[type="text"] {
   line-height: 22px;
+  padding: 0 5px;
 }
 table {
   width: 250px;
