@@ -18,7 +18,6 @@ var Item = React.createClass({
     },
 
     deleteItem: function(EO){
-        console.log('delete');
         this.props.cbDeletedItem(this.props.code);
     },
 

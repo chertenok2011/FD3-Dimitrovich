@@ -26,7 +26,11 @@ var listProducts = React.createClass({
             selectedRemainder: null,
             workMode: this.props.startWorkMode,
             products: this.props.products,
-            counter: this.props.defCounter
+            counter: this.props.defCounter,
+            errorName: false,
+            errorCount: false,
+            errorDescription: false,
+            errorReminder: false
         };
     },
 
@@ -42,19 +46,60 @@ var listProducts = React.createClass({
     },
 
     nameChanged: function(newName){
-        this.setState({ selectedName: newName })
+        // if (newName == '') {
+        //     this.setState({ errorName: true })
+        // } 
+        // else {
+            this.setState({ 
+                selectedName: newName, 
+                // errorName: false 
+            })
+        // }
+    },
+
+    nameBlur: function(name){
+        var reg = /^\d+$/;
+        if(reg.test(name) ) {
+            
+        }
     },
 
     countChanged: function (newCount) {
-        this.setState({ selectedCount: Number(newCount) })
+        var count = Number(newCount);
+        if (!isNaN(count) || newRemainder != "" ) {
+            this.setState({ errorCount: true })
+        }
+        else {
+            this.setState({ 
+                selectedCount: count, 
+                errorCount: false 
+            })
+        }
     },
 
     descriptionChanged: function(newDescription) {
-        this.setState({ selectedDescription: newDescription })
+        if (newDescription == '') {
+            this.setState({ errorDescription: true })
+        } 
+        else {
+            this.setState({ 
+                selectedDescription: newDescription, 
+                errorDescription: false 
+            })
+        }
     },
 
     remainderChanged: function(newRemainder) {
-        this.setState({ selectedRemainder: Number(newRemainder) })
+        var remainder = Number(newRemainder);
+        if (!isNaN(remainder) || newRemainder != "" ) {
+            this.setState({ errorReminder: true })
+        }
+        else {
+            this.setState({ 
+                selectedRemainder: remainder, 
+                errorReminder: false 
+            })
+        }
     },
 
     newItem: function(mode){
@@ -72,8 +117,7 @@ var listProducts = React.createClass({
                 item.name = this.state.selectedName;
                 item.count = this.state.selectedCount;
                 item.description = this.state.selectedDescription;
-                item.remainder = this.state.selectedRemainder;  
-                console.log(item);                     
+                item.remainder = this.state.selectedRemainder;                       
             }              
         })
         :this.state.products.push({
@@ -134,7 +178,12 @@ var listProducts = React.createClass({
                         cbDescriptionChanged: this.descriptionChanged,
                         cbRemainderChanged: this.remainderChanged,
                         cbSaveItem: this.saveItem,
-                        cbCloseForm: this.closeForm
+                        cbCloseForm: this.closeForm,
+                        cbNameBlur: this.nameBlur,
+                        // errorName: this.state.errorName,
+                        // errorCount: this.state.errorCount,
+                        // errorDescription: this.state.errorDescription,
+                        // errorReminder: this.state.errorReminder
                     })
                 )                
             ),

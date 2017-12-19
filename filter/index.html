@@ -1,0 +1,122 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="utf-8" />
+    <title>Filter</title>      
+    
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+</head> 
+<body>
+    <div class="container">
+        <h2>Filter</h3>
+        <div id="filter"></div>
+    </div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+      
+  <script src="components/filter.js"></script>
+  <script src="components/country.js"></script>
+
+  
+  <link rel="stylesheet" type="text/css" href="components/filter.css" />
+
+  <script>
+
+    var countries = [
+        {
+            name: 'Бельгия',
+            key: 1
+        },
+        {
+            name: 'Великобритания',
+            key: 2
+        },
+        {
+            name: 'Австрия',
+            key: 3
+        },
+        {
+            name: 'Германия',
+            key: 4
+        },
+        {
+            name: 'Лихтенштейн',
+            key: 5
+        },
+        {
+            name: 'Ирландия',
+            key: 6
+        },
+        {
+            name: 'Люксембург',
+            key: 7
+        },
+        {
+            name: 'Монако',
+            key: 8
+        },
+        {
+            name: 'Швейцария',
+            key: 9
+        },
+        {
+            name: 'Франция',
+            key: 10
+        },
+        {
+            name: 'Нидерланды',
+            key: 11
+        },
+        {
+            name: 'Белоруссия',
+            key: 12
+        },
+        {
+            name: 'Чехия',
+            key: 13
+        },
+        {
+            name: 'Болгария',
+            key: 14
+        },
+        {
+            name: 'Украина',
+            key: 15
+        },
+        {
+            name: 'Венгрия',
+            key: 16
+        },
+        {
+            name: 'Словакия',
+            key: 17
+        },
+        {
+            name: 'Молдавия',
+            key: 18
+        },
+        {
+            name: 'Румыния',
+            key: 19
+        },
+        {
+            name: 'Россия',
+            key: 20
+        },
+        {
+            name: 'Польша',
+            key: 21
+        }
+    ];  
+
+    ReactDOM.render(
+        React.createElement( Countries, { countries: countries}), 
+        document.getElementById('filter') 
+    );
+
+  </script>
+
+</body> 
+</html>

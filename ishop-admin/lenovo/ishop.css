@@ -58,6 +58,14 @@
 .viewmodel-list .cell .form-wrapper .item-section p input {
   width: 300px;
 }
+.viewmodel-list .cell .form-wrapper .item-section .error {
+  display: inline-block;
+  width: 100%;
+  margin-left: 85px;
+  margin-top: 3px;
+  font-size: 14px;
+  color: red;
+}
 .viewmodel-list .cell .form-wrapper .button-section {
   padding: 10px 0;
 }
