@@ -44,13 +44,6 @@ class Form extends React.Component {
         this.props.cbCloseForm();
     }
 
-    validateString = (EO) => {
-        var string = EO.target.value;
-        if (string == '') {
-            this.setState({ errorString: true })
-        }
-    }
-
     render() {
 
         var stringErrorText = 'This field can not be empty';

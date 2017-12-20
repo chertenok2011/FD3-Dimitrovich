@@ -176,7 +176,6 @@ class Models extends React.Component {
                             cbRemainderChanged = { this.remainderChanged }
                             cbSaveItem = { this.saveItem }
                             cbCloseForm = { this.closeForm }
-                            //cbNameBlur = { this.nameBlur }
                             errorName = { this.state.errorName }
                             errorCount = { this.state.errorCount }
                             errorDescription = { this.state.errorDescription }
