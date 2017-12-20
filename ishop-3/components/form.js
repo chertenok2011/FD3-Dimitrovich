@@ -3,28 +3,25 @@ import PropTypes from 'prop-types';
 
 class Form extends React.Component {
 
-    //displayName: 'form',
-
     static propTypes = {
-        workMode: React.PropTypes.number,
-        selectedCode: React.PropTypes.number,
-        selectedName: React.PropTypes.string,
-        selectedDescription: React.PropTypes.string,
-        selectedCount: React.PropTypes.number,
-        selectedRemainder: React.PropTypes.number,
-        cbNameChanged: React.PropTypes.func.isRequired,
-        cbCountChanged: React.PropTypes.func.isRequired,
-        cbRemainderChanged: React.PropTypes.func.isRequired,
-        cbSaveItem: React.PropTypes.func.isRequired,
-        cbNameBlur: React.PropTypes.func.isRequired
+        workMode: PropTypes.number,
+        selectedCode: PropTypes.number,
+        selectedName: PropTypes.string,
+        selectedDescription: PropTypes.string,
+        selectedCount: PropTypes.number,
+        selectedRemainder: PropTypes.number,
+        cbNameChanged: PropTypes.func.isRequired,
+        cbCountChanged: PropTypes.func.isRequired,
+        cbRemainderChanged: PropTypes.func.isRequired,
+        cbSaveItem: PropTypes.func.isRequired,
+        errorName: PropTypes.bool,
+        errorCount: PropTypes.bool,
+        errorDescription: PropTypes.bool,
+        errorReminder: PropTypes.bool
     }
 
     nameChanged = (EO) => {
         this.props.cbNameChanged(EO.target.value);
-    }
-
-    nameBlur = (EO) => {
-        this.props.cbNameBlur(EO.target.value);
     }
 
     countChanged = (EO) => {
@@ -59,80 +56,91 @@ class Form extends React.Component {
         var stringErrorText = 'This field can not be empty';
         var numberErrorText = 'Enter the number';
 
-        return React.DOM.div( {className: 'form-wrapper'},
-            (this.props.workMode == 0)
-            ? null 
-            :(this.props.workMode == 1)
-            ? React.DOM.div({ className: 'item-section' },
-                React.DOM.p({ className: 'product-name' },
-                    React.DOM.span({ className: 'bold' }, 'Name: ' ),
-                    React.DOM.input({ className: '', type: 'text', placeholder: 'Name', defaultValue: this.props.selectedName, onChange: this.nameChanged }),
-                    (this.props.errorName)
-                    ?React.DOM.span({ className: 'error'}, stringEmptyText )
-                    :null
-                ),                
-                React.DOM.p( {className: 'product-count'}, 
-                    React.DOM.span({ className: 'bold' }, 'Count: '),
-                    React.DOM.input({ className: '', type: 'text', placeholder: 'Count', defaultValue: this.props.selectedCount, onChange: this.countChanged }),
-                    (this.props.errorCount)
-                    ?React.DOM.span({ className: 'error'}, numberErrorText )
-                    :null
-                ),
-                React.DOM.p({ className: 'product-description' }, 
-                    React.DOM.span({ className: 'bold' }, 'Description: '),
-                    React.DOM.textarea({ className: '', rows: 4, placeholder: 'Description', defaultValue: this.props.selectedDescription, onChange: this.descriptionChanged }),
-                    (this.props.errorDescription)
-                    ?React.DOM.span({ className: 'error'}, stringErrorText )
-                    :null
-                ),
-                React.DOM.p({ className: 'product-remainder' }, 
-                    React.DOM.span({ className: 'bold' }, 'Remainder: ' ),
-                    React.DOM.input({ className: '', type: 'text', placeholder: 'Remainder', defaultValue: this.props.selectedRemainder, onChange: this.remainderChanged }),
-                    (this.props.errorReminder)
-                    ?React.DOM.span({ className: 'error'}, numberErrorText )
-                    :null
-                ),
-                React.DOM.div({className: 'button-section'},
-                    React.DOM.button({ className: 'button', onClick: this.saveItem, disabled: ( this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder )}, 'Save'),
-                    React.DOM.button({ className: 'button', onClick: this.closeForm }, 'Cancel')
-                )                    
-            )
-            :(this.props.workMode == 2)
-            ?React.DOM.div({ className: 'item-section' },
-                React.DOM.p({ className: 'product-name' },
-                    React.DOM.span({ className: 'bold' }, 'Name: ' ),
-                    React.DOM.input({ className: '', type: 'text', placeholder: 'Name', onChange: this.nameChanged, onBlur: this.nameBlur }),
-                    (this.props.errorName)
-                    ?React.DOM.span({ className: 'error'}, stringErrorText )
-                    :null
-                ),                
-                React.DOM.p( {className: 'product-count' }, 
-                    React.DOM.span({ className: 'bold' }, 'Count: '),
-                    React.DOM.input({ className: '', type: 'text', placeholder: 'Count', onChange: this.countChanged }),
-                    (this.props.errorCount)
-                    ?React.DOM.span({ className: 'error'}, numberErrorText )
-                    :null
-                ),
-                React.DOM.p( {className: 'product-description' }, 
-                    React.DOM.span({ className: 'bold' }, 'Description: ' ),
-                    React.DOM.textarea({ className: '', rows: 4, placeholder: 'Description', onChange: this.descriptionChanged }),
-                    (this.props.errorDescription)
-                    ?React.DOM.span({ className: 'error'}, stringErrorText )
-                    :null
-                ),
-                React.DOM.p( {className: 'product-remainder'}, 
-                    React.DOM.span({ className: 'bold' }, 'Remainder: ' ),
-                    React.DOM.input({ className: '', type: 'text', placeholder: 'Remainder', onChange: this.remainderChanged }),
-                    (this.props.errorReminder)
-                    ?React.DOM.span({ className: 'error'}, numberErrorText )
-                    :null
-                ),
-                React.DOM.div({className: 'button-section' },
-                    React.DOM.button({ className: 'button', onClick: this.saveItem, disabled: ( this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder )}, 'Save'),
-                    React.DOM.button({ className: 'button', onClick: this.closeForm }, 'Cancel')
-                )                    
-            )
-            :null
+        return ( 
+            <div className = {'form-wrapper'} >
+                { 
+                    ((this.props.workMode != 0) && (this.props.workMode == 1)) &&
+                    <div className = {'item-section' }>
+                        <p className = {'product-name' }>
+                            <span className = { 'bold' }>Name: </span>
+                            <input type = {'text'} placeholder = { 'Name'} defaultValue = { this.props.selectedName } onChange = { this.nameChanged } />
+                            {
+                                (this.props.errorName) &&
+                                <span className = { 'error' }>{ stringErrorText }</span>
+                            }
+                        </p>                
+                        <p className = { 'product-count' }> 
+                            <span className ={ 'bold' }>Count: </span>
+                            <input type = { 'text' } placeholder = { 'Count' } defaultValue = { this.props.selectedCount }  onChange = { this.countChanged }/>
+                            {
+                                (this.props.errorCount) &&
+                                <span className = { 'error' }>{ numberErrorText }</span>
+                            }
+                        </p>
+                        <p className = { 'product-description' }> 
+                            <span className ={ 'bold' }>Description: </span>
+                            <input type = { 'text' } placeholder = { 'Description' } defaultValue = { this.props.selectedDescription }  onChange = { this.descriptionChanged }/>
+                            {
+                                (this.props.errorDescription) &&
+                                <span className = { 'error' }>{ stringErrorText }</span>
+                            }
+                        </p>
+                        <p className = { 'product-remainder' }> 
+                            <span className ={ 'bold' }>Remainder: </span>
+                            <input type = { 'text' } placeholder = { 'Remainder' } defaultValue = { this.props.selectedRemainder }  onChange = { this.remainderChanged }/>
+                            {
+                                (this.props.errorReminder) &&
+                                <span className = { 'error' }>{ numberErrorText }</span>
+                            }
+                        </p>                    
+                        <div className = { 'button-section' }>
+                            <button className = { 'button' } onClick = { this.saveItem } disabled = { this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder }>Save</button>
+                            <button className = { 'button' } onClick = { this.closeForm }>Cancel</button>
+                        </div>
+                    </div>
+                }
+                {
+                    ((this.props.workMode != 0) && (this.props.workMode == 2)) &&
+                    <div className = {'item-section' }>
+                        <p className = {'product-name' }>
+                            <span className = { 'bold' }>Name: </span>
+                            <input type = {'text'} placeholder = { 'Name'} onChange = { this.nameChanged } />
+                            {
+                                (this.props.errorName) &&
+                                <span className = { 'error' }>{ stringErrorText }</span>
+                            }
+                        </p>                
+                        <p className = { 'product-count' }> 
+                            <span className ={ 'bold' }>Count: </span>
+                            <input type = { 'text' } placeholder = { 'Count' } onChange = { this.countChanged }/>
+                            {
+                                (this.props.errorCount) &&
+                                <span className = { 'error' }>{ numberErrorText }</span>
+                            }
+                        </p>
+                        <p className = { 'product-description' }> 
+                            <span className ={ 'bold' }>Description: </span>
+                            <input type = { 'text' } placeholder = { 'Description' } onChange = { this.descriptionChanged }/>
+                            {
+                                (this.props.errorDescription) &&
+                                <span className = { 'error' }>{ stringErrorText }</span>
+                            }
+                        </p>
+                        <p className = { 'product-remainder' }> 
+                            <span className ={ 'bold' }>Remainder: </span>
+                            <input type = { 'text' } placeholder = { 'Remainder' } onChange = { this.remainderChanged }/>
+                            {
+                                (this.props.errorReminder) &&
+                                <span className = { 'error' }>{ numberErrorText }</span>
+                            }
+                        </p>                    
+                        <div className = { 'button-section' }>
+                            <button className = { 'button' } onClick = { this.saveItem } disabled = { this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder }>Save</button>
+                            <button className = { 'button' } onClick = { this.closeForm }>Cancel</button>
+                        </div>
+                    </div>
+                }
+            </div>
         )
     }
 };

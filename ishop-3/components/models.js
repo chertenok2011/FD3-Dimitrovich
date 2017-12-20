@@ -9,18 +9,18 @@ import Item from './item';
 class Models extends React.Component {
     
     static propTypes = {
-        title: React.PropTypes.string,
-        products: React.PropTypes.arrayOf(
-            React.PropTypes.shape({
-                name: React.PropTypes.string.isRequired,
-                code: React.PropTypes.number.isRequired,
-                count: React.PropTypes.number,
-                description: React.PropTypes.string.isRequired, 
-                remainder: React.PropTypes.number
+        title: PropTypes.string,
+        products: PropTypes.arrayOf(
+            PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                code: PropTypes.number.isRequired,
+                count: PropTypes.number,
+                description: PropTypes.string.isRequired, 
+                remainder: PropTypes.number
             })
         ),
-        startWorkMode: React.PropTypes.number.isRequired,
-        defCounter: React.PropTypes.number.isRequired
+        startWorkMode: PropTypes.number.isRequired,
+        defCounter: PropTypes.number.isRequired
     };
 
     state =  {
@@ -50,24 +50,22 @@ class Models extends React.Component {
     }
 
     nameChanged = (newName) => {
-        this.setState({ 
-            selectedName: newName, 
-            // errorName: false 
-        });
-    }
-
-    nameBlur = (name) => {
-        var reg = /^\d+$/;
-        if(reg.test(name) ) {
-            
+        if (!newName) {
+            this.setState({ errorName: true })
+        } 
+        else {
+            this.setState({ 
+                selectedName: newName, 
+                errorName: false 
+            })
         }
     }
 
     countChanged = (newCount) => {
         var count = Number(newCount);
-        if (!isNaN(count) || newRemainder != "" ) {
+        if (!count) {
             this.setState({ errorCount: true })
-        }
+        } 
         else {
             this.setState({ 
                 selectedCount: count, 
@@ -77,7 +75,7 @@ class Models extends React.Component {
     }
 
     descriptionChanged = (newDescription) => {
-        if (newDescription == '') {
+        if (!newDescription) {
             this.setState({ errorDescription: true })
         } 
         else {
@@ -90,9 +88,9 @@ class Models extends React.Component {
 
     remainderChanged = (newRemainder) => {
         var remainder = Number(newRemainder);
-        if (!isNaN(remainder) || newRemainder != "" ) {
+        if (!remainder) {
             this.setState({ errorReminder: true })
-        }
+        } 
         else {
             this.setState({ 
                 selectedRemainder: remainder, 
@@ -178,12 +176,16 @@ class Models extends React.Component {
                             cbRemainderChanged = { this.remainderChanged }
                             cbSaveItem = { this.saveItem }
                             cbCloseForm = { this.closeForm }
-                            cbNameBlur = { this.nameBlur }
+                            //cbNameBlur = { this.nameBlur }
+                            errorName = { this.state.errorName }
+                            errorCount = { this.state.errorCount }
+                            errorDescription = { this.state.errorDescription }
+                            errorReminder = { this.errorReminder }
                         />
                     </div>                
                 </div>
                 <div className = 'button-new'>
-                    <button className = 'button' onClick = { this.newItem }> 'New'</button>
+                    <button className = 'button' onClick = { this.newItem }>New</button>
                 </div>
             </div>
         );      

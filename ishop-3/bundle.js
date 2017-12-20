@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -258,21 +258,6 @@ process.umask = function() { return 0; };
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(15);
-} else {
-  module.exports = __webpack_require__(16);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 /**
@@ -309,6 +294,21 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(17);
+} else {
+  module.exports = __webpack_require__(18);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 3 */
@@ -422,30 +422,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 
-var emptyObject = {};
-
-if (process.env.NODE_ENV !== 'production') {
-  Object.freeze(emptyObject);
-}
-
-module.exports = emptyObject;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
 /**
  * Use invariant() to assert state which your program assumes to be true.
  *
@@ -492,6 +468,30 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var emptyObject = {};
+
+if (process.env.NODE_ENV !== 'production') {
+  Object.freeze(emptyObject);
+}
+
+module.exports = emptyObject;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -506,7 +506,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(1);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -575,9 +575,9 @@ module.exports = warning;
 
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(5);
+  var invariant = __webpack_require__(4);
   var warning = __webpack_require__(6);
-  var ReactPropTypesSecret = __webpack_require__(17);
+  var ReactPropTypesSecret = __webpack_require__(8);
   var loggedTypeFailures = {};
 }
 
@@ -637,6 +637,60 @@ module.exports = checkPropTypes;
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(31)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(32)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -667,7 +721,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -682,7 +736,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(1);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -748,7 +802,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -790,7 +844,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -861,7 +915,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -876,7 +930,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(20);
+var isTextNode = __webpack_require__(21);
 
 /*eslint-disable no-bitwise */
 
@@ -904,7 +958,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -934,61 +988,42 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var React = __webpack_require__(1);
-var ReactDOM = __webpack_require__(18);
+var _react = __webpack_require__(2);
 
-var VotesBlock = __webpack_require__(27);
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(19);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+__webpack_require__(28);
+
+__webpack_require__(29);
+
+var _models = __webpack_require__(30);
+
+var _models2 = _interopRequireDefault(_models);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var titleTable = 'List of products';
 var defCounter = 1;
+var listArr = __webpack_require__(36);
 
-var listArr = [{
-    name: 'Yoga 920 (14") Vibes',
-    code: defCounter++,
-    count: 670,
-    description: 'Изящные и тонкие, но при этом невероятно производительные ноутбуки «2 в 1» с уникальным шарнирным механизмом по типу часового браслета и четырьмя режимами работы.',
-    img: 'images/lenovo-laptop-yoga-900-13-400x300-win10.png',
-    remainder: 2
-}, {
-    name: 'Yoga 700 (14")',
-    code: defCounter++,
-    count: 850,
-    description: 'Ультрасовременные ноутбуки-трансформеры с поддержкой четырех режимов использования отличаются непревзойденной производительностью и мобильностью в сочетании с другими передовыми возможностями.',
-    img: 'images/lenovo-laptop-yoga-700-11-400x300-win10.png',
-    remainder: 4
-}, {
-    name: 'Yoga 720 (15")',
-    code: defCounter++,
-    count: 900,
-    description: 'Ультрасовременные ноутбуки-трансформеры с поддержкой четырех режимов использования отличаются непревзойденной производительностью и мобильностью в сочетании с другими передовыми возможностями.',
-    img: 'images/lenovo-laptop-yoga-700-11-400x300-win10.png',
-    remainder: 1
-}, {
-    name: 'Yoga 510 (14", AMD)',
-    code: defCounter++,
-    count: 690,
-    description: 'Универсальный ПК высокой производительности с поддержкой четырех основных режимов.',
-    img: 'images/lenovo-laptop-yoga-500-white-400x300-win10.png',
-    remainder: 6
-}, {
-    name: 'Yoga 310 (11")',
-    code: defCounter++,
-    count: 620,
-    description: 'Доступные устройства с поддержкой четырех различных режимов для решения практически любых задач: ноутбук, консоль, презентация и планшет.',
-    img: 'images/lenovo-laptop-yoga-300-11-400x300-win10.png',
-    remainder: 1
-}];
-
-ReactDOM.render(React.createElement(listProducts, { title: titleTable, products: listArr, startWorkMode: 0, defCounter: defCounter }), document.getElementById('lenovo'));
+_reactDom2.default.render(_react2.default.createElement(_models2.default, {
+    title: titleTable,
+    products: listArr,
+    startWorkMode: 0,
+    defCounter: defCounter }), document.getElementById('lenovo'));
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1001,7 +1036,7 @@ ReactDOM.render(React.createElement(listProducts, { title: titleTable, products:
  * LICENSE file in the root directory of this source tree.
  */
 
-var m=__webpack_require__(3),n=__webpack_require__(4),p=__webpack_require__(2),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
+var m=__webpack_require__(3),n=__webpack_require__(5),p=__webpack_require__(1),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var z={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function A(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}A.prototype.isReactComponent={};A.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?y("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};A.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function B(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}function C(){}C.prototype=A.prototype;var D=B.prototype=new C;D.constructor=B;m(D,A.prototype);D.isPureReactComponent=!0;function E(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}var F=E.prototype=new C;F.constructor=E;m(F,A.prototype);F.unstable_isAsyncReactComponent=!0;F.render=function(){return this.props.children};var G={current:null},H=Object.prototype.hasOwnProperty,I={key:!0,ref:!0,__self:!0,__source:!0};
@@ -1016,7 +1051,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1038,10 +1073,10 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var _assign = __webpack_require__(3);
-var emptyObject = __webpack_require__(4);
-var invariant = __webpack_require__(5);
+var emptyObject = __webpack_require__(5);
+var invariant = __webpack_require__(4);
 var warning = __webpack_require__(6);
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(1);
 var checkPropTypes = __webpack_require__(7);
 
 // TODO: this is special because it gets imported during build.
@@ -2381,26 +2416,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-
-/***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2438,15 +2454,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(19);
+  module.exports = __webpack_require__(20);
 } else {
-  module.exports = __webpack_require__(22);
+  module.exports = __webpack_require__(23);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2462,7 +2478,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),l=__webpack_require__(8),B=__webpack_require__(3),C=__webpack_require__(2),ba=__webpack_require__(9),da=__webpack_require__(10),ea=__webpack_require__(11),fa=__webpack_require__(12),ia=__webpack_require__(13),D=__webpack_require__(4);
+var aa=__webpack_require__(2),l=__webpack_require__(10),B=__webpack_require__(3),C=__webpack_require__(1),ba=__webpack_require__(11),da=__webpack_require__(12),ea=__webpack_require__(13),fa=__webpack_require__(14),ia=__webpack_require__(15),D=__webpack_require__(5);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -2682,7 +2698,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2697,7 +2713,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(21);
+var isNode = __webpack_require__(22);
 
 /**
  * @param {*} object The object to check.
@@ -2710,7 +2726,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2738,7 +2754,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2759,21 +2775,21 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = __webpack_require__(1);
-var invariant = __webpack_require__(5);
+var React = __webpack_require__(2);
+var invariant = __webpack_require__(4);
 var warning = __webpack_require__(6);
-var ExecutionEnvironment = __webpack_require__(8);
+var ExecutionEnvironment = __webpack_require__(10);
 var _assign = __webpack_require__(3);
-var emptyFunction = __webpack_require__(2);
-var EventListener = __webpack_require__(9);
-var getActiveElement = __webpack_require__(10);
-var shallowEqual = __webpack_require__(11);
-var containsNode = __webpack_require__(12);
-var focusNode = __webpack_require__(13);
-var emptyObject = __webpack_require__(4);
+var emptyFunction = __webpack_require__(1);
+var EventListener = __webpack_require__(11);
+var getActiveElement = __webpack_require__(12);
+var shallowEqual = __webpack_require__(13);
+var containsNode = __webpack_require__(14);
+var focusNode = __webpack_require__(15);
+var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(7);
-var hyphenateStyleName = __webpack_require__(23);
-var camelizeStyleName = __webpack_require__(25);
+var hyphenateStyleName = __webpack_require__(24);
+var camelizeStyleName = __webpack_require__(26);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -18140,7 +18156,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18155,7 +18171,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(24);
+var hyphenate = __webpack_require__(25);
 
 var msPattern = /^ms-/;
 
@@ -18182,7 +18198,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18218,7 +18234,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18233,7 +18249,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(26);
+var camelize = __webpack_require__(27);
 
 var msPattern = /^-ms-/;
 
@@ -18261,7 +18277,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18296,188 +18312,6 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var React = __webpack_require__(1);
-
-__webpack_require__(28);
-
-var Form = __webpack_require__(29);
-var Item = __webpack_require__(30);
-
-var listProducts = React.createClass({
-
-    displayName: 'listProducts',
-
-    propTypes: {
-        title: React.PropTypes.string,
-        products: React.PropTypes.arrayOf(React.PropTypes.shape({
-            name: React.PropTypes.string.isRequired,
-            code: React.PropTypes.number.isRequired,
-            count: React.PropTypes.number,
-            description: React.PropTypes.string.isRequired,
-            remainder: React.PropTypes.number
-        })),
-        startWorkMode: React.PropTypes.number.isRequired,
-        defCounter: React.PropTypes.number.isRequired
-    },
-
-    getInitialState: function () {
-        return {
-            selectedCode: null,
-            selectedName: '',
-            selectedDescription: '',
-            selectedCount: null,
-            selectedRemainder: null,
-            workMode: this.props.startWorkMode,
-            products: this.props.products,
-            counter: this.props.defCounter,
-            errorName: false,
-            errorCount: false,
-            errorDescription: false,
-            errorReminder: false
-        };
-    },
-
-    editItem: function (selectedCode, selectedName, selectedDescription, selectedCount, selectedRemainder) {
-        this.setState({
-            selectedCode: selectedCode,
-            selectedName: selectedName,
-            selectedDescription: selectedDescription,
-            selectedCount: selectedCount,
-            selectedRemainder: selectedRemainder,
-            workMode: 1
-        });
-    },
-
-    nameChanged: function (newName) {
-        // if (newName == '') {
-        //     this.setState({ errorName: true })
-        // } 
-        // else {
-        this.setState({
-            selectedName: newName
-            // errorName: false 
-        });
-        // }
-    },
-
-    nameBlur: function (name) {
-        var reg = /^\d+$/;
-        if (reg.test(name)) {}
-    },
-
-    countChanged: function (newCount) {
-        var count = Number(newCount);
-        if (!isNaN(count) || newRemainder != "") {
-            this.setState({ errorCount: true });
-        } else {
-            this.setState({
-                selectedCount: count,
-                errorCount: false
-            });
-        }
-    },
-
-    descriptionChanged: function (newDescription) {
-        if (newDescription == '') {
-            this.setState({ errorDescription: true });
-        } else {
-            this.setState({
-                selectedDescription: newDescription,
-                errorDescription: false
-            });
-        }
-    },
-
-    remainderChanged: function (newRemainder) {
-        var remainder = Number(newRemainder);
-        if (!isNaN(remainder) || newRemainder != "") {
-            this.setState({ errorReminder: true });
-        } else {
-            this.setState({
-                selectedRemainder: remainder,
-                errorReminder: false
-            });
-        }
-    },
-
-    newItem: function (mode) {
-        this.setState({
-            workMode: 2,
-            counter: this.state.counter++,
-            selectedCode: this.state.counter
-        });
-    },
-
-    saveItem: function () {
-        this.state.workMode == 1 ? this.state.products.forEach(item => {
-            if (this.state.selectedCode == item.code) {
-                item.name = this.state.selectedName;
-                item.count = this.state.selectedCount;
-                item.description = this.state.selectedDescription;
-                item.remainder = this.state.selectedRemainder;
-            }
-        }) : this.state.products.push({
-            code: this.state.selectedCode,
-            name: this.state.selectedName,
-            count: this.state.selectedCount,
-            description: this.state.selectedDescription,
-            remainder: this.state.selectedRemainder
-        });
-        this.setState({ products: this.state.products.slice(), workMode: 0 });
-    },
-
-    deleteItem: function (deleteCode) {
-        this.state.products.forEach((item, index) => {
-            if (deleteCode == item.code) this.state.products.splice(index, 1);
-        });
-        this.setState({ products: this.state.products.slice(), workMode: 0 });
-    },
-
-    closeForm: function () {
-        this.setState({ workMode: 0 });
-    },
-
-    render: function () {
-
-        var productsMas = this.state.products.map(v => React.createElement(Item, {
-            key: v.code,
-            code: v.code,
-            name: v.name,
-            count: v.count,
-            description: v.description,
-            remainder: v.remainder,
-            workMode: this.state.workMode,
-            cbEditItem: this.editItem,
-            cbDeletedItem: this.deleteItem
-        }));
-
-        return React.DOM.div(null, React.DOM.h3(null, this.props.title), React.DOM.div({ className: 'viewmodel-list' }, React.DOM.div({ className: 'cell' }, React.DOM.ul({ className: 'items-list' }, productsMas)), React.DOM.div({ className: 'cell' }, React.createElement(Form, {
-            workMode: this.state.workMode,
-            key: this.props.selectedCode,
-            selectedCode: this.state.selectedCode,
-            selectedName: this.state.selectedName,
-            selectedDescription: this.state.selectedDescription,
-            selectedCount: this.state.selectedCount,
-            selectedRemainder: this.state.selectedRemainder,
-            cbNameChanged: this.nameChanged,
-            cbCountChanged: this.countChanged,
-            cbDescriptionChanged: this.descriptionChanged,
-            cbRemainderChanged: this.remainderChanged,
-            cbSaveItem: this.saveItem,
-            cbCloseForm: this.closeForm,
-            cbNameBlur: this.nameBlur
-            // errorName: this.state.errorName,
-            // errorCount: this.state.errorCount,
-            // errorDescription: this.state.errorDescription,
-            // errorReminder: this.state.errorReminder
-        }))), React.DOM.div({ className: 'button-new' }, React.DOM.button({ className: 'button', onClick: this.newItem }, 'New')));
-    }
-});
-
-/***/ }),
 /* 28 */
 /***/ (function(module, exports) {
 
@@ -18485,105 +18319,1274 @@ var listProducts = React.createClass({
 
 /***/ }),
 /* 29 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var React = __webpack_require__(1);
-
-var Form = React.createClass({
-
-    displayName: 'form',
-
-    propTypes: {
-        workMode: React.PropTypes.number,
-        selectedCode: React.PropTypes.number,
-        selectedName: React.PropTypes.string,
-        selectedDescription: React.PropTypes.string,
-        selectedCount: React.PropTypes.number,
-        selectedRemainder: React.PropTypes.number,
-        cbNameChanged: React.PropTypes.func.isRequired,
-        cbCountChanged: React.PropTypes.func.isRequired,
-        cbRemainderChanged: React.PropTypes.func.isRequired,
-        cbSaveItem: React.PropTypes.func.isRequired,
-        cbNameBlur: React.PropTypes.func.isRequired
-    },
-
-    nameChanged: function (EO) {
-        this.props.cbNameChanged(EO.target.value);
-    },
-
-    nameBlur: function (EO) {
-        this.props.cbNameBlur(EO.target.value);
-    },
-
-    countChanged: function (EO) {
-        this.props.cbCountChanged(EO.target.value);
-    },
-
-    descriptionChanged: function (EO) {
-        this.props.cbDescriptionChanged(EO.target.value);
-    },
-
-    remainderChanged: function (EO) {
-        this.props.cbRemainderChanged(EO.target.value);
-    },
-
-    saveItem: function (EO) {
-        this.props.cbSaveItem();
-    },
-
-    closeForm: function (EO) {
-        this.props.cbCloseForm();
-    },
-
-    validateString: function (EO) {
-        var string = EO.target.value;
-        if (string == '') {
-            this.setState({ errorString: true });
-        }
-    },
-
-    render: function () {
-
-        var stringErrorText = 'This field can not be empty';
-        var numberErrorText = 'Enter the number';
-
-        return React.DOM.div({ className: 'form-wrapper' }, this.props.workMode == 0 ? null : this.props.workMode == 1 ? React.DOM.div({ className: 'item-section' }, React.DOM.p({ className: 'product-name' }, React.DOM.span({ className: 'bold' }, 'Name: '), React.DOM.input({ className: '', type: 'text', placeholder: 'Name', defaultValue: this.props.selectedName, onChange: this.nameChanged }), this.props.errorName ? React.DOM.span({ className: 'error' }, stringEmptyText) : null), React.DOM.p({ className: 'product-count' }, React.DOM.span({ className: 'bold' }, 'Count: '), React.DOM.input({ className: '', type: 'text', placeholder: 'Count', defaultValue: this.props.selectedCount, onChange: this.countChanged }), this.props.errorCount ? React.DOM.span({ className: 'error' }, numberErrorText) : null), React.DOM.p({ className: 'product-description' }, React.DOM.span({ className: 'bold' }, 'Description: '), React.DOM.textarea({ className: '', rows: 4, placeholder: 'Description', defaultValue: this.props.selectedDescription, onChange: this.descriptionChanged }), this.props.errorDescription ? React.DOM.span({ className: 'error' }, stringErrorText) : null), React.DOM.p({ className: 'product-remainder' }, React.DOM.span({ className: 'bold' }, 'Remainder: '), React.DOM.input({ className: '', type: 'text', placeholder: 'Remainder', defaultValue: this.props.selectedRemainder, onChange: this.remainderChanged }), this.props.errorReminder ? React.DOM.span({ className: 'error' }, numberErrorText) : null), React.DOM.div({ className: 'button-section' }, React.DOM.button({ className: 'button', onClick: this.saveItem, disabled: this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder }, 'Save'), React.DOM.button({ className: 'button', onClick: this.closeForm }, 'Cancel'))) : this.props.workMode == 2 ? React.DOM.div({ className: 'item-section' }, React.DOM.p({ className: 'product-name' }, React.DOM.span({ className: 'bold' }, 'Name: '), React.DOM.input({ className: '', type: 'text', placeholder: 'Name', onChange: this.nameChanged, onBlur: this.nameBlur }), this.props.errorName ? React.DOM.span({ className: 'error' }, stringErrorText) : null), React.DOM.p({ className: 'product-count' }, React.DOM.span({ className: 'bold' }, 'Count: '), React.DOM.input({ className: '', type: 'text', placeholder: 'Count', onChange: this.countChanged }), this.props.errorCount ? React.DOM.span({ className: 'error' }, numberErrorText) : null), React.DOM.p({ className: 'product-description' }, React.DOM.span({ className: 'bold' }, 'Description: '), React.DOM.textarea({ className: '', rows: 4, placeholder: 'Description', onChange: this.descriptionChanged }), this.props.errorDescription ? React.DOM.span({ className: 'error' }, stringErrorText) : null), React.DOM.p({ className: 'product-remainder' }, React.DOM.span({ className: 'bold' }, 'Remainder: '), React.DOM.input({ className: '', type: 'text', placeholder: 'Remainder', onChange: this.remainderChanged }), this.props.errorReminder ? React.DOM.span({ className: 'error' }, numberErrorText) : null), React.DOM.div({ className: 'button-section' }, React.DOM.button({ className: 'button', onClick: this.saveItem, disabled: this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder }, 'Save'), React.DOM.button({ className: 'button', onClick: this.closeForm }, 'Cancel'))) : null);
-    }
-});
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(1);
+"use strict";
 
-var Item = React.createClass({
 
-    displayName: 'item',
-
-    propTypes: {
-        code: React.PropTypes.number.isRequired,
-        name: React.PropTypes.string.isRequired,
-        count: React.PropTypes.number,
-        description: React.PropTypes.string.isRequired,
-        remainder: React.PropTypes.number,
-        workMode: React.PropTypes.number.isRequired,
-        cbEditItem: React.PropTypes.func.isRequired,
-        cbDeletedItem: React.PropTypes.func.isRequired
-    },
-
-    editItem: function (EO) {
-        this.props.cbEditItem(this.props.code, this.props.name, this.props.description, this.props.count, this.props.remainder);
-    },
-
-    deleteItem: function (EO) {
-        this.props.cbDeletedItem(this.props.code);
-    },
-
-    render: function () {
-        return React.DOM.li({ className: 'item-body' }, React.DOM.div({ className: 'item-section' }, React.DOM.p({ className: 'product-name' }, this.props.name), React.DOM.p({ className: 'product-count' }, React.DOM.span({ className: 'bold' }, 'Count: '), React.DOM.span(null, this.props.count), React.DOM.span(null, '$')), React.DOM.p({ className: 'product-description' }, React.DOM.span({ className: 'bold' }, 'Description: '), React.DOM.span(null, this.props.description)), React.DOM.p({ className: 'product-remainder' }, React.DOM.span({ className: 'bold' }, 'Remainder: '), React.DOM.span(null, this.props.remainder)), React.DOM.div({ className: 'button-section' }, React.DOM.button({ className: 'button', onClick: this.editItem }, 'Edit'), React.DOM.button({ className: 'button', onClick: this.deleteItem }, 'Delete'))));
-    }
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(9);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+__webpack_require__(33);
+
+var _form = __webpack_require__(34);
+
+var _form2 = _interopRequireDefault(_form);
+
+var _item = __webpack_require__(35);
+
+var _item2 = _interopRequireDefault(_item);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Models = function (_React$Component) {
+    _inherits(Models, _React$Component);
+
+    function Models() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Models);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Models.__proto__ || Object.getPrototypeOf(Models)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            selectedCode: null,
+            selectedName: '',
+            selectedDescription: '',
+            selectedCount: null,
+            selectedRemainder: null,
+            workMode: _this.props.startWorkMode,
+            products: _this.props.products,
+            counter: _this.props.defCounter,
+            errorName: false,
+            errorCount: false,
+            errorDescription: false,
+            errorReminder: false
+        }, _this.editItem = function (selectedCode, selectedName, selectedDescription, selectedCount, selectedRemainder) {
+            _this.setState({
+                selectedCode: selectedCode,
+                selectedName: selectedName,
+                selectedDescription: selectedDescription,
+                selectedCount: selectedCount,
+                selectedRemainder: selectedRemainder,
+                workMode: 1
+            });
+        }, _this.nameChanged = function (newName) {
+            _this.setState({
+                selectedName: newName
+                // errorName: false 
+            });
+        }, _this.nameBlur = function (name) {
+            var reg = /^\d+$/;
+            if (reg.test(name)) {}
+        }, _this.countChanged = function (newCount) {
+            var count = Number(newCount);
+            if (!isNaN(count) || newRemainder != "") {
+                _this.setState({ errorCount: true });
+            } else {
+                _this.setState({
+                    selectedCount: count,
+                    errorCount: false
+                });
+            }
+        }, _this.descriptionChanged = function (newDescription) {
+            if (newDescription == '') {
+                _this.setState({ errorDescription: true });
+            } else {
+                _this.setState({
+                    selectedDescription: newDescription,
+                    errorDescription: false
+                });
+            }
+        }, _this.remainderChanged = function (newRemainder) {
+            var remainder = Number(newRemainder);
+            if (!isNaN(remainder) || newRemainder != "") {
+                _this.setState({ errorReminder: true });
+            } else {
+                _this.setState({
+                    selectedRemainder: remainder,
+                    errorReminder: false
+                });
+            }
+        }, _this.newItem = function (mode) {
+            _this.setState({
+                workMode: 2,
+                counter: _this.state.counter++,
+                selectedCode: _this.state.counter
+            });
+        }, _this.saveItem = function () {
+            _this.state.workMode == 1 ? _this.state.products.forEach(function (item) {
+                if (_this.state.selectedCode == item.code) {
+                    item.name = _this.state.selectedName;
+                    item.count = _this.state.selectedCount;
+                    item.description = _this.state.selectedDescription;
+                    item.remainder = _this.state.selectedRemainder;
+                }
+            }) : _this.state.products.push({
+                code: _this.state.selectedCode,
+                name: _this.state.selectedName,
+                count: _this.state.selectedCount,
+                description: _this.state.selectedDescription,
+                remainder: _this.state.selectedRemainder
+            });
+            _this.setState({ products: _this.state.products.slice(), workMode: 0 });
+        }, _this.deleteItem = function (deleteCode) {
+            _this.state.products.forEach(function (item, index) {
+                if (deleteCode == item.code) _this.state.products.splice(index, 1);
+            });
+            _this.setState({ products: _this.state.products.slice(), workMode: 0 });
+        }, _this.closeForm = function () {
+            _this.setState({ workMode: 0 });
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Models, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var productsMas = this.state.products.map(function (v) {
+                return _react2.default.createElement(_item2.default, { key: v.code,
+                    code: v.code,
+                    name: v.name,
+                    count: v.count,
+                    description: v.description,
+                    remainder: v.remainder,
+                    workMode: _this2.state.workMode,
+                    cbEditItem: _this2.editItem,
+                    cbDeletedItem: _this2.deleteItem
+                });
+            });
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h3',
+                    null,
+                    this.props.title
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'viewmodel-list' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'cell' },
+                        _react2.default.createElement(
+                            'ul',
+                            { className: 'items-list' },
+                            productsMas,
+                            ' '
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'cell' },
+                        _react2.default.createElement(_form2.default, {
+                            workMode: this.state.workMode,
+                            key: this.props.selectedCode,
+                            selectedCode: this.state.selectedCode,
+                            selectedName: this.state.selectedName,
+                            selectedDescription: this.state.selectedDescription,
+                            selectedCount: this.state.selectedCount,
+                            selectedRemainder: this.state.selectedRemainder,
+                            cbNameChanged: this.nameChanged,
+                            cbCountChanged: this.countChanged,
+                            cbDescriptionChanged: this.descriptionChanged,
+                            cbRemainderChanged: this.remainderChanged,
+                            cbSaveItem: this.saveItem,
+                            cbCloseForm: this.closeForm,
+                            cbNameBlur: this.nameBlur
+                        })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'button-new' },
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'button', onClick: this.newItem },
+                        'New'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Models;
+}(_react2.default.Component);
+
+Models.propTypes = {
+    title: _react2.default.PropTypes.string,
+    products: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
+        name: _react2.default.PropTypes.string.isRequired,
+        code: _react2.default.PropTypes.number.isRequired,
+        count: _react2.default.PropTypes.number,
+        description: _react2.default.PropTypes.string.isRequired,
+        remainder: _react2.default.PropTypes.number
+    })),
+    startWorkMode: _react2.default.PropTypes.number.isRequired,
+    defCounter: _react2.default.PropTypes.number.isRequired
+};
+;
+
+exports.default = Models;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var emptyFunction = __webpack_require__(1);
+var invariant = __webpack_require__(4);
+var warning = __webpack_require__(6);
+var assign = __webpack_require__(3);
+
+var ReactPropTypesSecret = __webpack_require__(8);
+var checkPropTypes = __webpack_require__(7);
+
+module.exports = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (process.env.NODE_ENV !== 'production') {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          invariant(
+            false,
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            warning(
+              false,
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `%s` prop on `%s`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
+              propFullName,
+              componentName
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunction.thatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      return emptyFunction.thatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues);
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (propValue.hasOwnProperty(key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+      process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunction.thatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        warning(
+          false,
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received %s at index %s.',
+          getPostfixForTypeWarning(checker),
+          i
+        );
+        return emptyFunction.thatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
+          return null;
+        }
+      }
+
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = assign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var emptyFunction = __webpack_require__(1);
+var invariant = __webpack_require__(4);
+var ReactPropTypesSecret = __webpack_require__(8);
+
+module.exports = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret) {
+      // It is still safe when called from React.
+      return;
+    }
+    invariant(
+      false,
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+  };
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  };
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim
+  };
+
+  ReactPropTypes.checkPropTypes = emptyFunction;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(9);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Form = function (_React$Component) {
+    _inherits(Form, _React$Component);
+
+    function Form() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Form);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Form.__proto__ || Object.getPrototypeOf(Form)).call.apply(_ref, [this].concat(args))), _this), _this.nameChanged = function (EO) {
+            _this.props.cbNameChanged(EO.target.value);
+        }, _this.nameBlur = function (EO) {
+            _this.props.cbNameBlur(EO.target.value);
+        }, _this.countChanged = function (EO) {
+            _this.props.cbCountChanged(EO.target.value);
+        }, _this.descriptionChanged = function (EO) {
+            _this.props.cbDescriptionChanged(EO.target.value);
+        }, _this.remainderChanged = function (EO) {
+            _this.props.cbRemainderChanged(EO.target.value);
+        }, _this.saveItem = function (EO) {
+            _this.props.cbSaveItem();
+        }, _this.closeForm = function (EO) {
+            _this.props.cbCloseForm();
+        }, _this.validateString = function (EO) {
+            var string = EO.target.value;
+            if (string == '') {
+                _this.setState({ errorString: true });
+            }
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Form, [{
+        key: 'render',
+        value: function render() {
+
+            var stringErrorText = 'This field can not be empty';
+            var numberErrorText = 'Enter the number';
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'form-wrapper' },
+                this.props.workMode != 0 && this.props.workMode == 1 && _react2.default.createElement(
+                    'div',
+                    { className: 'item-section' },
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-name' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Name: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Name', defaultValue: this.props.selectedName, onChange: this.nameChanged }),
+                        this.props.errorName && _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            stringEmptyText
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-count' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Count: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Count', defaultValue: this.props.selectedCount, onChange: this.countChanged }),
+                        this.props.errorName && _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            numberErrorText
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-description' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Description: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Description', defaultValue: this.props.selectedDescription, onChange: this.descriptionChanged }),
+                        this.props.errorName && _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            stringErrorText
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-remainder' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Remainder: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Remainder', defaultValue: this.props.selectedRemainder, onChange: this.remainderChanged }),
+                        this.props.errorName && _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            numberErrorText
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'button-section' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: this.saveItem, disabled: this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder },
+                            'Save'
+                        ),
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: this.closeForm },
+                            'Cancel'
+                        )
+                    )
+                ),
+                this.props.workMode != 0 && this.props.workMode == 2 && _react2.default.createElement(
+                    'div',
+                    { className: 'item-section' },
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-name' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Name: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Name', onChange: this.nameChanged }),
+                        this.props.errorName && _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            stringEmptyText
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-count' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Count: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Count', onChange: this.countChanged }),
+                        this.props.errorName && _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            numberErrorText
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-description' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Description: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Description', onChange: this.descriptionChanged }),
+                        this.props.errorName && _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            stringErrorText
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-remainder' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Remainder: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Remainder', onChange: this.remainderChanged }),
+                        this.props.errorName && _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            numberErrorText
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'button-section' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: this.saveItem, disabled: this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder },
+                            'Save'
+                        ),
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: this.closeForm },
+                            'Cancel'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Form;
+}(_react2.default.Component);
+
+Form.propTypes = {
+    workMode: _react2.default.PropTypes.number,
+    selectedCode: _react2.default.PropTypes.number,
+    selectedName: _react2.default.PropTypes.string,
+    selectedDescription: _react2.default.PropTypes.string,
+    selectedCount: _react2.default.PropTypes.number,
+    selectedRemainder: _react2.default.PropTypes.number,
+    cbNameChanged: _react2.default.PropTypes.func.isRequired,
+    cbCountChanged: _react2.default.PropTypes.func.isRequired,
+    cbRemainderChanged: _react2.default.PropTypes.func.isRequired,
+    cbSaveItem: _react2.default.PropTypes.func.isRequired,
+    cbNameBlur: _react2.default.PropTypes.func.isRequired
+};
+;
+
+exports.default = Form;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(9);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Item = function (_React$Component) {
+    _inherits(Item, _React$Component);
+
+    function Item() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Item);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Item.__proto__ || Object.getPrototypeOf(Item)).call.apply(_ref, [this].concat(args))), _this), _this.editItem = function (EO) {
+            _this.props.cbEditItem(_this.props.code, _this.props.name, _this.props.description, _this.props.count, _this.props.remainder);
+        }, _this.deleteItem = function (EO) {
+            _this.props.cbDeletedItem(_this.props.code);
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Item, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'li',
+                { className: 'item-body' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'item-section' },
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-name' },
+                        this.props.name
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-count' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Count: '
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            this.props.count
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            '$'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-description' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            ' Description: '
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            this.props.description
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'product-remainder' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'bold' },
+                            'Remainder: '
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            this.props.remainder
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'button-section' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: this.editItem },
+                            'Edit'
+                        ),
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: this.deleteItem },
+                            'Delete'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Item;
+}(_react2.default.Component);
+
+Item.propTypes = {
+    code: _react2.default.PropTypes.number.isRequired,
+    name: _react2.default.PropTypes.string.isRequired,
+    count: _react2.default.PropTypes.number,
+    description: _react2.default.PropTypes.string.isRequired,
+    remainder: _react2.default.PropTypes.number,
+    workMode: _react2.default.PropTypes.number.isRequired,
+    cbEditItem: _react2.default.PropTypes.func.isRequired,
+    cbDeletedItem: _react2.default.PropTypes.func.isRequired
+};
+;
+
+exports.default = Item;
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+module.exports = [{"name":"Yoga 920 (14\") Vibes","code":"defCounter++","count":"670","description":"Изящные и тонкие, но при этом невероятно производительные ноутбуки «2 в 1» с уникальным шарнирным механизмом по типу часового браслета и четырьмя режимами работы.","remainder":"2"},{"name":"Yoga 700 (14\")","code":"defCounter++","count":"850","description":"Ультрасовременные ноутбуки-трансформеры с поддержкой четырех режимов использования отличаются непревзойденной производительностью и мобильностью в сочетании с другими передовыми возможностями.","remainder":"4"},{"name":"Yoga 720 (15\")","code":"defCounter++","count":"900","description":"Ультрасовременные ноутбуки-трансформеры с поддержкой четырех режимов использования отличаются непревзойденной производительностью и мобильностью в сочетании с другими передовыми возможностями.","remainder":"1"},{"name":"Yoga 510 (14\", AMD)","code":"defCounter++","count":"690","description":"Универсальный ПК высокой производительности с поддержкой четырех основных режимов.","remainder":"6"},{"name":"Yoga 310 (11\")","code":"defCounter++","count":"620","description":"Доступные устройства с поддержкой четырех различных режимов для решения практически любых задач: ноутбук, консоль, презентация и планшет.","remainder":"1"}]
 
 /***/ })
 /******/ ]);
