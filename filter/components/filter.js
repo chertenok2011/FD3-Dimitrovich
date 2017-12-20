@@ -13,6 +13,7 @@ var Countries = React.createClass({
 
     getInitialState: function(){
         return {
+            defaultFilter: this.props.countries,
             listCountries: this.props.countries,
             sorting: false,
             filter: ''
@@ -20,11 +21,12 @@ var Countries = React.createClass({
     },
 
     changeList: function(){
+        var defaultFilter = this.state.defaultFilter;
         var filter = this.state.filter.toLowerCase();
         var sorting = this.state.sorting;
         var filterList = [];
         if (filter) {
-            this.props.countries.forEach( function(item){
+            var newFilter = defaultFilter.forEach( function(item){
                 if (item.name.toLowerCase().indexOf(filter) != -1) {
                     filterList.push({
                         name: item.name,
@@ -34,29 +36,30 @@ var Countries = React.createClass({
             });
             this.setState({ listCountries: filterList });
         } else {
-            this.setState({ listCountries: this.props.countries });
+            filterList = defaultFilter.slice();
+            this.setState({ listCountries: filterList });
         }        
         if (sorting) {
-            var sortingList = this.state.listCountries;
-            sortingList.sort( function(title1, title2) {
-                return title1.name - title2.name
+            var sortingList = filterList.slice();
+            var newSortingList = sortingList.sort( function(a, b) {
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+                return 0;
             });
-            this.setState({ listCountries: sortingList });
+            this.setState({ listCountries: newSortingList });           
         } else {
-            this.setState({ listCountries: filterList });
+            this.setState({ listCountries: filterList });           
         }
     },
 
     sorting: function(EO) {
         var sorting = EO.target.checked;
-        this.setState({ sorting: sorting });
-        this.changeList();
+        this.setState({ sorting: sorting }, this.changeList );        
     },
 
     filter: function(EO){
         var filter = EO.target.value;
-        this.setState({ filter: filter });
-        this.changeList();
+        this.setState({ filter: filter }, this.changeList );  
     },
 
     render: function() {

@@ -1,0 +1,97 @@
+.viewmodel-list {
+    display: table;
+    table-layout: fixed;
+
+    .cell {
+        display: table-cell;
+        width: 50%;
+        vertical-align: top;
+
+        .items-list {
+            list-style: none;
+            margin: 0 0 1px 0;
+    
+            .item-body {
+                position: relative;
+                display: table;
+                width: 100%;
+                border: 1px solid #ccc;
+                margin: 0 0 -1px 0;
+                
+                .item-section {
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 10px;
+                    
+                    p {
+                        .bold {
+                            font-weight: bold;
+                        }
+    
+                        &.product-name {
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+                    }   
+                    
+                    .button-section {
+                        padding: 5px 0;
+                        
+                        button {
+                            display: inline-block;
+    
+                            &:first-child {
+                                margin-right: 5px;
+                            }                            
+                        }
+                    }
+                }
+            }
+        }
+
+        .form-wrapper {
+            padding: 10px;
+
+            .item-section {
+                p {
+                    margin-bottom: 10px;
+
+                    span {
+                        width: 85px;
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+
+                    input {
+                        height: 20px;
+                    }
+
+                    textarea, input {
+                        width: 300px;
+                    }
+                }
+
+                .error {
+                    display: inline-block;
+                    width: 100%;
+                    margin-left: 85px;
+                    margin-top: 3px;
+                    font-size: 14px;
+                    color: red;
+                }
+            }
+
+            .button-section {
+                padding: 10px 0;
+
+                button:first-child {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }    
+}
+.button-new {
+    padding: 15px 0;
+}

@@ -1,0 +1,77 @@
+.viewmodel-list {
+  display: table;
+  table-layout: fixed;
+}
+.viewmodel-list .cell {
+  display: table-cell;
+  width: 50%;
+  vertical-align: top;
+}
+.viewmodel-list .cell .items-list {
+  list-style: none;
+  margin: 0 0 1px 0;
+}
+.viewmodel-list .cell .items-list .item-body {
+  position: relative;
+  display: table;
+  width: 100%;
+  border: 1px solid #ccc;
+  margin: 0 0 -1px 0;
+}
+.viewmodel-list .cell .items-list .item-body .item-section {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewmodel-list .cell .items-list .item-body .item-section p .bold {
+  font-weight: bold;
+}
+.viewmodel-list .cell .items-list .item-body .item-section p.product-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.viewmodel-list .cell .items-list .item-body .item-section .button-section {
+  padding: 5px 0;
+}
+.viewmodel-list .cell .items-list .item-body .item-section .button-section button {
+  display: inline-block;
+}
+.viewmodel-list .cell .items-list .item-body .item-section .button-section button:first-child {
+  margin-right: 5px;
+}
+.viewmodel-list .cell .form-wrapper {
+  padding: 10px;
+}
+.viewmodel-list .cell .form-wrapper .item-section p {
+  margin-bottom: 10px;
+}
+.viewmodel-list .cell .form-wrapper .item-section p span {
+  width: 85px;
+  display: inline-block;
+  vertical-align: top;
+}
+.viewmodel-list .cell .form-wrapper .item-section p input {
+  height: 20px;
+}
+.viewmodel-list .cell .form-wrapper .item-section p textarea,
+.viewmodel-list .cell .form-wrapper .item-section p input {
+  width: 300px;
+}
+.viewmodel-list .cell .form-wrapper .item-section .error {
+  display: inline-block;
+  width: 100%;
+  margin-left: 85px;
+  margin-top: 3px;
+  font-size: 14px;
+  color: red;
+}
+.viewmodel-list .cell .form-wrapper .button-section {
+  padding: 10px 0;
+}
+.viewmodel-list .cell .form-wrapper .button-section button:first-child {
+  margin-right: 5px;
+}
+.button-new {
+  padding: 15px 0;
+}
