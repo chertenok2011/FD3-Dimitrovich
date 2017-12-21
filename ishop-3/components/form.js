@@ -46,8 +46,7 @@ class Form extends React.Component {
 
     render() {
 
-        var stringErrorText = 'This field can not be empty';
-        var numberErrorText = 'Enter the number';
+        var errorText = 'This field can not be empty';
 
         return ( 
             <div className = {'form-wrapper'} >
@@ -59,7 +58,7 @@ class Form extends React.Component {
                             <input type = {'text'} placeholder = { 'Name'} defaultValue = { this.props.selectedName } onChange = { this.nameChanged } />
                             {
                                 (this.props.errorName) &&
-                                <span className = { 'error' }>{ stringErrorText }</span>
+                                <span className = { 'error' }>{ errorText }</span>
                             }
                         </p>                
                         <p className = { 'product-count' }> 
@@ -67,7 +66,7 @@ class Form extends React.Component {
                             <input type = { 'text' } placeholder = { 'Count' } defaultValue = { this.props.selectedCount }  onChange = { this.countChanged }/>
                             {
                                 (this.props.errorCount) &&
-                                <span className = { 'error' }>{ numberErrorText }</span>
+                                <span className = { 'error' }>{ errorText }</span>
                             }
                         </p>
                         <p className = { 'product-description' }> 
@@ -75,7 +74,7 @@ class Form extends React.Component {
                             <input type = { 'text' } placeholder = { 'Description' } defaultValue = { this.props.selectedDescription }  onChange = { this.descriptionChanged }/>
                             {
                                 (this.props.errorDescription) &&
-                                <span className = { 'error' }>{ stringErrorText }</span>
+                                <span className = { 'error' }>{ errorText }</span>
                             }
                         </p>
                         <p className = { 'product-remainder' }> 
@@ -83,7 +82,7 @@ class Form extends React.Component {
                             <input type = { 'text' } placeholder = { 'Remainder' } defaultValue = { this.props.selectedRemainder }  onChange = { this.remainderChanged }/>
                             {
                                 (this.props.errorReminder) &&
-                                <span className = { 'error' }>{ numberErrorText }</span>
+                                <span className = { 'error' }>{ errorText }</span>
                             }
                         </p>                    
                         <div className = { 'button-section' }>
@@ -100,7 +99,7 @@ class Form extends React.Component {
                             <input type = {'text'} placeholder = { 'Name'} onChange = { this.nameChanged } />
                             {
                                 (this.props.errorName) &&
-                                <span className = { 'error' }>{ stringErrorText }</span>
+                                <span className = { 'error' }>{ errorText }</span>
                             }
                         </p>                
                         <p className = { 'product-count' }> 
@@ -108,7 +107,7 @@ class Form extends React.Component {
                             <input type = { 'text' } placeholder = { 'Count' } onChange = { this.countChanged }/>
                             {
                                 (this.props.errorCount) &&
-                                <span className = { 'error' }>{ numberErrorText }</span>
+                                <span className = { 'error' }>{ errorText }</span>
                             }
                         </p>
                         <p className = { 'product-description' }> 
@@ -116,7 +115,7 @@ class Form extends React.Component {
                             <input type = { 'text' } placeholder = { 'Description' } onChange = { this.descriptionChanged }/>
                             {
                                 (this.props.errorDescription) &&
-                                <span className = { 'error' }>{ stringErrorText }</span>
+                                <span className = { 'error' }>{ errorText }</span>
                             }
                         </p>
                         <p className = { 'product-remainder' }> 
@@ -124,7 +123,7 @@ class Form extends React.Component {
                             <input type = { 'text' } placeholder = { 'Remainder' } onChange = { this.remainderChanged }/>
                             {
                                 (this.props.errorReminder) &&
-                                <span className = { 'error' }>{ numberErrorText }</span>
+                                <span className = { 'error' }>{ errorText }</span>
                             }
                         </p>                    
                         <div className = { 'button-section' }>
