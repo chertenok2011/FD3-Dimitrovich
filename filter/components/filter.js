@@ -6,7 +6,7 @@ var Countries = React.createClass({
         countries: React.PropTypes.arrayOf(
             React.PropTypes.shape({
                 name: React.PropTypes.string.isRequired,
-                key: React.PropTypes.number.isRequired,
+                code: React.PropTypes.number.isRequired
             })
         )
     },
@@ -67,7 +67,7 @@ var Countries = React.createClass({
         var list = this.state.listCountries.map( c => 
             React.createElement( country, {
                 name: c.name,
-                code: c.key
+                code: c.code
             })
         )
 

@@ -8,7 +8,7 @@ var country = React.createClass({
     },
 
     render: function() {
-        return React.DOM.tr({ id: this.props.key }, 
+        return React.DOM.tr({ id: this.props.code, key: this.props.code }, 
             React.DOM.td( null, this.props.name)
         )
     }
