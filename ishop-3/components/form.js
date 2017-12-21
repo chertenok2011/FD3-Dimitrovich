@@ -86,7 +86,7 @@ class Form extends React.Component {
                             }
                         </p>                    
                         <div className = { 'button-section' }>
-                            <button className = { 'button' } onClick = { this.saveItem } disabled = { this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder }>Save</button>
+                            <button className = { 'button' } onClick = { this.saveItem } disabled = { this.props.errorName || this.props.errorCount || this.props.errorDescription || this.props.errorReminder }>Save</button>
                             <button className = { 'button' } onClick = { this.closeForm }>Cancel</button>
                         </div>
                     </div>
@@ -127,7 +127,7 @@ class Form extends React.Component {
                             }
                         </p>                    
                         <div className = { 'button-section' }>
-                            <button className = { 'button' } onClick = { this.saveItem } disabled = { this.props.errorName && this.props.errorCount && this.props.errorDescription && this.props.errorReminder }>Save</button>
+                            <button className = { 'button' } onClick = { this.saveItem } disabled = { this.props.errorName || this.props.errorCount || this.props.errorDescription || this.props.errorReminder }>Save</button>
                             <button className = { 'button' } onClick = { this.closeForm }>Cancel</button>
                         </div>
                     </div>

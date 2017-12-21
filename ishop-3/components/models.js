@@ -62,8 +62,8 @@ class Models extends React.Component {
     }
 
     countChanged = (newCount) => {
-        var count = Number(newCount);
-        if (!count) {
+        if (!newCount) {
+            var count = Number(newCount);
             this.setState({ errorCount: true })
         } 
         else {
@@ -87,8 +87,8 @@ class Models extends React.Component {
     }
 
     remainderChanged = (newRemainder) => {
-        var remainder = Number(newRemainder);
-        if (!remainder) {
+        if (!newRemainder) {
+            var remainder = Number(newRemainder);
             this.setState({ errorReminder: true })
         } 
         else {
