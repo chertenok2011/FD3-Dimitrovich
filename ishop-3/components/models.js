@@ -35,7 +35,8 @@ class Models extends React.Component {
         errorName: false,
         errorCount: false,
         errorDescription: false,
-        errorReminder: false
+        errorReminder: false,
+        disableSave: false
     };
 
     editItem = (selectedCode, selectedName, selectedDescription, selectedCount, selectedRemainder) => {
@@ -46,56 +47,60 @@ class Models extends React.Component {
             selectedCount: selectedCount,
             selectedRemainder: selectedRemainder,
             workMode: 1
-        });
+        }, this.disableSave);
     }
 
     nameChanged = (newName) => {
         if (!newName) {
-            this.setState({ errorName: true })
-        } 
-        else {
+            this.setState({ 
+                errorName: true 
+            }, this.disableSave)
+        } else {
             this.setState({ 
                 selectedName: newName, 
                 errorName: false 
-            })
+            }, this.disableSave)
         }
     }
 
     countChanged = (newCount) => {
-        if (!newCount) {
+        if (!newCount) {            
+            this.setState({ 
+                errorCount: true 
+            }, this.disableSave)
+        } else {
             var count = Number(newCount);
-            this.setState({ errorCount: true })
-        } 
-        else {
             this.setState({ 
                 selectedCount: count, 
                 errorCount: false 
-            })
+            }, this.disableSave)
         }
     }
 
     descriptionChanged = (newDescription) => {
         if (!newDescription) {
-            this.setState({ errorDescription: true })
-        } 
-        else {
+            this.setState({ 
+                errorDescription: true 
+            }, this.disableSave);
+        } else {
             this.setState({ 
                 selectedDescription: newDescription, 
                 errorDescription: false 
-            })
+            }, this.disableSave);
         }
     }
 
     remainderChanged = (newRemainder) => {
-        if (!newRemainder) {
+        if (!newRemainder) {            
+            this.setState({ 
+                errorReminder: true 
+            }, this.disableSave);
+        } else {
             var remainder = Number(newRemainder);
-            this.setState({ errorReminder: true })
-        } 
-        else {
             this.setState({ 
                 selectedRemainder: remainder, 
                 errorReminder: false 
-            })
+            }, this.disableSave);
         }
     }
 
@@ -103,8 +108,9 @@ class Models extends React.Component {
         this.setState({            
             workMode: 2,
             counter: this.state.counter++,
-            selectedCode: this.state.counter
-        })
+            selectedCode: this.state.counter,
+            disableSave: true
+        });
     }
 
     saveItem = () => {
@@ -115,7 +121,7 @@ class Models extends React.Component {
                 item.count = this.state.selectedCount;
                 item.description = this.state.selectedDescription;
                 item.remainder = this.state.selectedRemainder;                       
-            }              
+            }
         })
         :this.state.products.push({
             code: this.state.selectedCode,
@@ -124,19 +130,42 @@ class Models extends React.Component {
             description: this.state.selectedDescription,
             remainder: this.state.selectedRemainder
         });          
-        this.setState( { products: this.state.products.slice(), workMode: 0 });
+        this.setState({ 
+            products: this.state.products.slice(), 
+            workMode: 0, 
+            disableSave: false 
+        }, this.disableSave);
     }
     
     deleteItem = (deleteCode) => {
-        this.state.products.forEach( (item, index) => {
+        this.state.products.forEach( (item, index) => { 
             if (deleteCode == item.code)
-                this.state.products.splice(index, 1)
+                this.state.products.splice(index, 1);
         });
-        this.setState( { products: this.state.products.slice(), workMode: 0 });
+        this.setState({ 
+            products: this.state.products.slice(), 
+            workMode: 0, 
+            disableSave: false 
+        }, this.disableSave);
     }   
 
     closeForm = () => {
-        this.setState({ workMode: 0 })
+        this.setState({ 
+            workMode: 0,
+            errorName: false,
+            errorCount: false,
+            errorDescription: false,
+            errorReminder: false,
+            disableSave: false
+        });
+    }
+
+    disableSave = () => {
+        if (this.state.errorName || this.state.errorCount || this.state.errorDescription || this.state.errorReminder) {
+            this.setState({ disableSave: true });
+        } else {
+            this.setState({ disableSave: false });
+        }
     }
 
     render(){
@@ -159,7 +188,7 @@ class Models extends React.Component {
                 <h3>{ this.props.title }</h3>
                 <div className = 'viewmodel-list'>
                     <div className = 'cell'>
-                        <ul className = 'items-list'>{ productsMas } </ul>
+                        <ul className = 'items-list'>{ productsMas }</ul>
                     </div>
                     <div className = 'cell'>
                         <Form  
@@ -179,7 +208,8 @@ class Models extends React.Component {
                             errorName = { this.state.errorName }
                             errorCount = { this.state.errorCount }
                             errorDescription = { this.state.errorDescription }
-                            errorReminder = { this.errorReminder }
+                            errorReminder = { this.state.errorReminder }
+                            disableSave = { this.state.disableSave }
                         />
                     </div>                
                 </div>

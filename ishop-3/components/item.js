@@ -24,25 +24,25 @@ class Item extends React.Component {
 
     render() {
         return (
-            <li className = { 'item-body' }>
-                <div className = { 'item-section' }>
-                    <p className = { 'product-name' }>{ this.props.name }</p>
-                    <p className = { 'product-count' }> 
-                        <span className = { 'bold' }>Count: </span>
+            <li className = 'item-body' >
+                <div className = 'item-section' >
+                    <p className = 'product-name' >{ this.props.name }</p>
+                    <p className = 'product-count' > 
+                        <span className =  'bold' >Count: </span>
                         <span>{ this.props.count }</span>
                         <span>$</span>
                     </p>
-                    <p className ={ 'product-description' }>
-                        <span className = { 'bold' }> Description: </span>
+                    <p className ='product-description' >
+                        <span className = 'bold' > Description: </span>
                         <span>{ this.props.description }</span>
                     </p>
-                    <p className = { 'product-remainder' }>
-                        <span className = { 'bold' }>Remainder: </span>
+                    <p className = 'product-remainder' >
+                        <span className = 'bold' >Remainder: </span>
                         <span>{ this.props.remainder }</span>
                     </p>
-                    <div className = { 'button-section' }>
-                        <button className = { 'button' } onClick = { this.editItem }>Edit</button>
-                        <button className = { 'button' } onClick = { this.deleteItem }>Delete</button>
+                    <div className = 'button-section' >
+                        <button className = 'button' onClick = { this.editItem }>Edit</button>
+                        <button className = 'button' onClick = { this.deleteItem }>Delete</button>
                     </div>                    
                 </div>
             </li>     

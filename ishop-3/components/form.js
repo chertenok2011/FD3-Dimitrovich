@@ -14,10 +14,11 @@ class Form extends React.Component {
         cbCountChanged: PropTypes.func.isRequired,
         cbRemainderChanged: PropTypes.func.isRequired,
         cbSaveItem: PropTypes.func.isRequired,
-        errorName: PropTypes.bool,
-        errorCount: PropTypes.bool,
-        errorDescription: PropTypes.bool,
-        errorReminder: PropTypes.bool
+        errorName: PropTypes.bool.isRequired,
+        errorCount: PropTypes.bool.isRequired,
+        errorDescription: PropTypes.bool.isRequired,
+        errorReminder: PropTypes.bool.isRequired,
+        disableSave: PropTypes.bool.isRequired
     }
 
     nameChanged = (EO) => {
@@ -49,86 +50,86 @@ class Form extends React.Component {
         var errorText = 'This field can not be empty';
 
         return ( 
-            <div className = {'form-wrapper'} >
+            <div className = 'form-wrapper' >
                 { 
                     ((this.props.workMode != 0) && (this.props.workMode == 1)) &&
-                    <div className = {'item-section' }>
-                        <p className = {'product-name' }>
-                            <span className = { 'bold' }>Name: </span>
-                            <input type = {'text'} placeholder = { 'Name'} defaultValue = { this.props.selectedName } onChange = { this.nameChanged } />
+                    <div className = 'item-section' >
+                        <p className = 'product-name' >
+                            <span className = 'bold' >Name: </span>
+                            <input type = 'text' placeholder = 'Name' defaultValue = { this.props.selectedName } onChange = { this.nameChanged } />
                             {
                                 (this.props.errorName) &&
-                                <span className = { 'error' }>{ errorText }</span>
+                                <span className = 'error' >{ errorText }</span>
                             }
                         </p>                
-                        <p className = { 'product-count' }> 
-                            <span className ={ 'bold' }>Count: </span>
-                            <input type = { 'text' } placeholder = { 'Count' } defaultValue = { this.props.selectedCount }  onChange = { this.countChanged }/>
+                        <p className = 'product-count' > 
+                            <span className = 'bold' >Count: </span>
+                            <input type = 'text' placeholder = 'Count' defaultValue = { this.props.selectedCount }  onChange = { this.countChanged }/>
                             {
                                 (this.props.errorCount) &&
-                                <span className = { 'error' }>{ errorText }</span>
+                                <span className = 'error' >{ errorText }</span>
                             }
                         </p>
-                        <p className = { 'product-description' }> 
-                            <span className ={ 'bold' }>Description: </span>
-                            <input type = { 'text' } placeholder = { 'Description' } defaultValue = { this.props.selectedDescription }  onChange = { this.descriptionChanged }/>
+                        <p className = 'product-description' > 
+                            <span className = 'bold' >Description: </span>
+                            <input type = 'text' placeholder = 'Description' defaultValue = { this.props.selectedDescription }  onChange = { this.descriptionChanged }/>
                             {
                                 (this.props.errorDescription) &&
-                                <span className = { 'error' }>{ errorText }</span>
+                                <span className = 'error' >{ errorText }</span>
                             }
                         </p>
-                        <p className = { 'product-remainder' }> 
-                            <span className ={ 'bold' }>Remainder: </span>
-                            <input type = { 'text' } placeholder = { 'Remainder' } defaultValue = { this.props.selectedRemainder }  onChange = { this.remainderChanged }/>
+                        <p className = 'product-remainder' > 
+                            <span className = 'bold' >Remainder: </span>
+                            <input type = 'text' placeholder = 'Remainder' defaultValue = { this.props.selectedRemainder }  onChange = { this.remainderChanged }/>
                             {
                                 (this.props.errorReminder) &&
-                                <span className = { 'error' }>{ errorText }</span>
+                                <span className = 'error' >{ errorText }</span>
                             }
                         </p>                    
-                        <div className = { 'button-section' }>
-                            <button className = { 'button' } onClick = { this.saveItem } disabled = { this.props.errorName || this.props.errorCount || this.props.errorDescription || this.props.errorReminder }>Save</button>
-                            <button className = { 'button' } onClick = { this.closeForm }>Cancel</button>
+                        <div className = 'button-section' >
+                            <button className = 'button' onClick = { this.saveItem } disabled = { this.props.disableSave }>Save</button>
+                            <button className = 'button' onClick = { this.closeForm }>Cancel</button>
                         </div>
                     </div>
                 }
                 {
                     ((this.props.workMode != 0) && (this.props.workMode == 2)) &&
-                    <div className = {'item-section' }>
-                        <p className = {'product-name' }>
-                            <span className = { 'bold' }>Name: </span>
-                            <input type = {'text'} placeholder = { 'Name'} onChange = { this.nameChanged } />
+                    <div className = 'item-section' >
+                        <p className = 'product-name' >
+                            <span className = 'bold' >Name: </span>
+                            <input type = 'text' placeholder = 'Name' onChange = { this.nameChanged } />
                             {
                                 (this.props.errorName) &&
-                                <span className = { 'error' }>{ errorText }</span>
+                                <span className = 'error' >{ errorText }</span>
                             }
                         </p>                
-                        <p className = { 'product-count' }> 
-                            <span className ={ 'bold' }>Count: </span>
-                            <input type = { 'text' } placeholder = { 'Count' } onChange = { this.countChanged }/>
+                        <p className = 'product-count' > 
+                            <span className = 'bold' >Count: </span>
+                            <input type = 'text'  placeholder = 'Count' onChange = { this.countChanged }/>
                             {
                                 (this.props.errorCount) &&
-                                <span className = { 'error' }>{ errorText }</span>
+                                <span className = 'error' >{ errorText }</span>
                             }
                         </p>
-                        <p className = { 'product-description' }> 
-                            <span className ={ 'bold' }>Description: </span>
-                            <input type = { 'text' } placeholder = { 'Description' } onChange = { this.descriptionChanged }/>
+                        <p className = 'product-description' > 
+                            <span className = 'bold' >Description: </span>
+                            <input type = 'text' placeholder = 'Description' onChange = { this.descriptionChanged }/>
                             {
                                 (this.props.errorDescription) &&
-                                <span className = { 'error' }>{ errorText }</span>
+                                <span className = 'error' >{ errorText }</span>
                             }
                         </p>
-                        <p className = { 'product-remainder' }> 
-                            <span className ={ 'bold' }>Remainder: </span>
-                            <input type = { 'text' } placeholder = { 'Remainder' } onChange = { this.remainderChanged }/>
+                        <p className = 'product-remainder' > 
+                            <span className = 'bold' >Remainder: </span>
+                            <input type = 'text' placeholder = 'Remainder' onChange = { this.remainderChanged }/>
                             {
                                 (this.props.errorReminder) &&
-                                <span className = { 'error' }>{ errorText }</span>
+                                <span className = 'error' >{ errorText }</span>
                             }
                         </p>                    
-                        <div className = { 'button-section' }>
-                            <button className = { 'button' } onClick = { this.saveItem } disabled = { this.props.errorName || this.props.errorCount || this.props.errorDescription || this.props.errorReminder }>Save</button>
-                            <button className = { 'button' } onClick = { this.closeForm }>Cancel</button>
+                        <div className = 'button-section' >
+                            <button className = 'button' onClick = { this.saveItem } disabled = { this.props.disableSave }>Save</button>
+                            <button className = 'button' onClick = { this.closeForm }>Cancel</button>
                         </div>
                     </div>
                 }
