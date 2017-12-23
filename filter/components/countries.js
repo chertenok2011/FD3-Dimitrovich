@@ -30,7 +30,7 @@ var Countries = React.createClass({
                 if (item.name.toLowerCase().indexOf(filter) != -1) {
                     filterList.push({
                         name: item.name,
-                        key: item.key
+                        code: item.code
                     });
                 }
             });
@@ -67,7 +67,8 @@ var Countries = React.createClass({
         var list = this.state.listCountries.map( c => 
             React.createElement( country, {
                 name: c.name,
-                code: c.code
+                code: c.code,
+                key: c.code
             })
         )
 
