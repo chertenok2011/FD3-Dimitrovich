@@ -1,0 +1,24 @@
+.border {
+  border: solid 20px #ccc;
+}
+.border-red {
+  border-color: red;
+}
+.border-orange {
+  border-color: orange;
+}
+.border-yellow {
+  border-color: yellow;
+}
+.border-limegreen {
+  border-color: limegreen;
+}
+.border-dodgerblue {
+  border-color: dodgerblue;
+}
+.border-blue {
+  border-color: blue;
+}
+.border-indigo {
+  border-color: indigo;
+}
