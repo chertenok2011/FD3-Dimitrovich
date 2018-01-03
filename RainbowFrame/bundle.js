@@ -983,7 +983,11 @@ var colors = __webpack_require__(34);
 _reactDom2.default.render(_react2.default.createElement(
     'div',
     { className: 'wrapper' },
-    _react2.default.createElement(Rainbow, { color: colors })
+    _react2.default.createElement(
+        _rainbow2.default,
+        { colors: colors },
+        'Rainbow'
+    )
 ), document.getElementById('RainbowFrame'));
 
 /***/ }),
@@ -18294,6 +18298,10 @@ module.exports = camelize;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(4);
@@ -18314,6 +18322,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+//import RainbowChild from './rainbow';
+
 var Rainbow = function (_React$Component) {
     _inherits(Rainbow, _React$Component);
 
@@ -18326,16 +18336,35 @@ var Rainbow = function (_React$Component) {
     _createClass(Rainbow, [{
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', { className: 'border border-' + this.props.colors });
+            var border = this.props.children;
+            //let color = colors.splice(0,1)[0]        
+            //let child = null
+
+            //if (colors.length > 0) child = <RainbowChild colors= { colors }/>
+
+            for (var i = 0; i < colors.lenght; i++) {
+                border = _react2.default.createElement(
+                    'div',
+                    { className: 'border border-' + colors[i] },
+                    border
+                );
+            }
+
+            // return (
+            //     <div className = {'border border-' + (color)}>
+            //         {child}
+            //     </div>       
+            //)
         }
     }]);
 
     return Rainbow;
 }(_react2.default.Component);
 
-Rainbow.PropTypes = {
-    colors: _propTypes2.default.array.isRequired
+Rainbow.propTypes = {
+    colors: _propTypes2.default.array
 };
+exports.default = Rainbow;
 
 /***/ }),
 /* 30 */
@@ -18997,7 +19026,7 @@ module.exports = function() {
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = ["red","orange","yellow","green","dodgerblue","blue","indigo"]
+module.exports = ["red","orange","yellow","limegreen","dodgerblue","blue","indigo"]
 
 /***/ })
 /******/ ]);

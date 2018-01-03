@@ -2,25 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './rainbow.css';
-import RainbowChild from './rainbow';
 
 class Rainbow extends React.Component {
     static propTypes = {
         colors: PropTypes.array
     }
 
-    render() {
+    render() {        
         let colors = this.props.colors
-        let color = colors.splice(0,1)[0]        
-        let child = null
+        let child = this.props.children
 
-        if (colors.length > 0) child = <RainbowChild colors= { colors }/>
-        
-        return (
-            <div className = {'border border-' + (color)}>
-                {child}
-            </div>       
-        )
+        for (let i=0; i<colors.lenght; i++) {
+            child = <div className = {'border border-' + (colors[i])}>{ child }</div>
+        }
+
+        return child
     }
 }
 export default Rainbow;

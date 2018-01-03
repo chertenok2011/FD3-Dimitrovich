@@ -13,7 +13,9 @@ var colors = require('./colors.json');
 
 ReactDOM.render(
     <div className='wrapper'>
-        <Rainbow colors = { colors } />
+        <Rainbow colors = { colors }>
+            Rainbow
+        </Rainbow>
     </div>,
     document.getElementById('RainbowFrame') 
 );

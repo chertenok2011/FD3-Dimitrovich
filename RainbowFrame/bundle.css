@@ -29,5 +29,32 @@ q:before,q:after {
 abbr,acronym { 
     border: 0;
 } .container {
-  padding: 0 15px;
+  text-align: center;
+  padding: 25px;
+  width: 50%;
+  margin: 0 auto;
+}
+.border {
+  border: solid 20px #ccc;
+}
+.border-red {
+  border-color: red;
+}
+.border-orange {
+  border-color: orange;
+}
+.border-yellow {
+  border-color: yellow;
+}
+.border-limegreen {
+  border-color: limegreen;
+}
+.border-dodgerblue {
+  border-color: dodgerblue;
+}
+.border-blue {
+  border-color: blue;
+}
+.border-indigo {
+  border-color: indigo;
 }
