@@ -12,7 +12,7 @@ class Rainbow extends React.Component {
         let colors = this.props.colors
         let child = this.props.children
 
-        for (let i=0; i<colors.lenght; i++) {
+        for (let i=0; i<colors.length; i++) {
             child = <div className = {'border border-' + (colors[i])}>{ child }</div>
         }
 
