@@ -1,0 +1,14 @@
+[
+    {
+        "title": "All",
+        "code": 1
+    }, 
+    {
+        "title": "Active",
+        "code": 2
+    },
+    {
+        "title": "Blocked",
+        "code": 3
+    }
+]
