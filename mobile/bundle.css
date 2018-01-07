@@ -1,22 +1,113 @@
-.mobile-client {
-  padding: 2px 0;
+.mobile-client td {
+  padding: 5px 8px;
+  border-bottom: 1px dashed darkgray;
+  border-right: 1px solid black;
 }
 .mobile-client-balance {
-  float: right;
-  width: 30px;
+  width: 70px;
   font-weight: bold;
-  text-align: right;
 }
 .mobile-client-fio {
-  margin-right: 30px;
+  width: 225px;
+}
+.mobile-client-fio input {
+  margin-right: 5px;
+}
+.mobile-client-status {
+  width: 70px;
+}
+.mobile-client-actions {
+  width: 100px;
+}
+.mobile-client-actions .button {
+  display: inline-block;
+}
+.mobile-client-actions .button:first-child {
+  margin-right: 3px;
+}
+.form-wrapper {
+  padding: 10px;
+}
+.form-wrapper .item-section p {
+  margin-bottom: 10px;
+}
+.form-wrapper .item-section p span {
+  width: 85px;
+  display: inline-block;
+  vertical-align: top;
+}
+.form-wrapper .item-section p input {
+  height: 20px;
+}
+.form-wrapper .item-section p textarea,
+.form-wrapper .item-section p input {
+  width: 300px;
+}
+.form-wrapper .item-section .error {
+  display: inline-block;
+  width: 100%;
+  margin-left: 85px;
+  margin-top: 3px;
+  font-size: 14px;
+  color: red;
+}
+.form-wrapper .button-section {
+  padding: 10px 0;
+}
+.form-wrapper .button-section button:first-child {
+  margin-right: 5px;
 }
 .mobile-company {
-  width: 180px;
-  padding: 3px 7px;
+  padding: 30px;
+}
+.mobile-company .buttons-company {
+  padding: 5px;
+}
+.mobile-company .buttons-company .button {
+  display: inline-block;
+  margin: 0 5px;
+}
+.mobile-company .filters-block {
+  margin-bottom: 10px;
+}
+.mobile-company .filters-block select {
+  margin-left: 377px;
+}
+.mobile-company .viewmodel-list {
+  display: table;
+  table-layout: fixed;
+}
+.mobile-company .viewmodel-list .cell {
+  display: table-cell;
+  width: 50%;
+  vertical-align: top;
 }
 .mobile-company-name {
   font-weight: bold;
 }
 .mobile-company-clients {
+  border-collapse: collapse;
+  border: 1px solid black;
   padding-top: 5px;
+}
+.mobile-company-clients thead tr th {
+  text-align: left;
+  padding: 5px 8px;
+  border-bottom: 1px dashed darkgray;
+  border-right: 1px solid black;
+}
+.mobile-company-clients thead tr th-balance {
+  width: 70px;
+}
+.mobile-company-clients thead tr th-fio {
+  width: 225px;
+}
+.mobile-company-clients thead tr th-status {
+  width: 70px;
+}
+.mobile-company-clients thead tr th-actions {
+  width: 100px;
+}
+body {
+  margin: 0;
 }

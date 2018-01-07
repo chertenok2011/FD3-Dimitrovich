@@ -171,7 +171,8 @@ class Models extends React.Component {
     render(){
 
         var productsMas = this.state.products.map( v =>
-            <Item key = { v.code }
+            <Item 
+                key = { v.code }
                 code = { v.code }
                 name = { v.name }
                 count = { v.count }

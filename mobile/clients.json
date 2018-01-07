@@ -1,38 +1,38 @@
 [ 
     {
-        "id": 101, 
+        "id": "", 
         "fio": "Иванов И.И.", 
         "balance": 200,
-        "status": "Active"
+        "status": ""
     }, 
     {
-        "id": 102, 
+        "id": "", 
         "fio": "Петров И.И.", 
-        "balance": 200,
-        "status": "Active"
+        "balance": 80,
+        "status": ""
     },
     {
-        "id": 103, 
+        "id": "", 
         "fio": "Сидоров И.И.", 
-        "balance": 200,
-        "status": "Active"
+        "balance": 567,
+        "status": ""
     },
     {
-        "id": 104, 
+        "id": "", 
         "fio": "Григорьев И.И.", 
-        "balance": 200,
-        "status": "Active"
+        "balance": -6,
+        "status": ""
     },
     {
-        "id": 105, 
+        "id": "", 
         "fio": "Дунцов И.И.", 
-        "balance": 200,
-        "status": "Active"
+        "balance": 20,
+        "status": ""
     },
     {
-        "id": 106, 
+        "id": "", 
         "fio": "Малашов И.И.", 
-        "balance": 200,
-        "status": "Active"
+        "balance": -60,
+        "status": ""
     }
   ]

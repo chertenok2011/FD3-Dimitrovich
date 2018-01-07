@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './filter.less';
 
-class Filter extends React.Component {
+class Filter extends React.PureComponent {
 
     static propTypes = {
         option: PropTypes.shape({
@@ -18,7 +18,7 @@ class Filter extends React.Component {
     };
 
     render() {
-        console.log('Filters render ' + this.state.code);
+        console.log('Filters ' + this.state.code + ' render');
 
         return (
             <option key={this.state.code}>{this.state.title}</option>
