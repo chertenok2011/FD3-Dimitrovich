@@ -111,7 +111,6 @@ class MobileCompany extends React.PureComponent {
         } else {
             var count = Number(newBalance);
             var status = (count > 0)?"Active":"Blocked";
-            console.log(count, status);
             this.setState({
                 selectedBalance: count,
                 selectedStatus: status,
@@ -183,7 +182,6 @@ class MobileCompany extends React.PureComponent {
     render() {
 
         console.log("MobileCompany render");
-        console.log(this.state);
 
         var clientsCode = this.state.clients.map(client =>
             <MobileClient 

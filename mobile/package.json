@@ -1,14 +1,14 @@
 {
   "name": "mobile",
   "version": "1.0.0",
-  "description": "мобильная компания",
-  "main": "App.js",
+  "description": "Mobile company",
+  "main": "app.js",
   "scripts": {
     "build": ".\\node_modules\\.bin\\webpack",
     "livebuild": ".\\node_modules\\.bin\\webpack-dev-server --progress --colors",
     "test": "jest"
   },
-  "author": "",
+  "author": "Kate D",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.0",
