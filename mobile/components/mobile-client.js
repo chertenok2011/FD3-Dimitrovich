@@ -33,13 +33,12 @@ class MobileClient extends React.PureComponent {
     }
 
     deleteClient = () => {
-        var id = this.state.id;
-        this.props.cbDeleteClient(id);
+        this.props.cbDeleteClient( this.state.id );
     };
 
     render() {
 
-        console.log("MobileClient id=" + this.state.id + " render. Status: " + this.state.status );
+        console.log("MobileClient id=" + this.state.id + " render");
 
         return (
             <tr className='mobile-client' key={this.state.id}>
