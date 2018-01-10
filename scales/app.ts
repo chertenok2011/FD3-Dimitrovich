@@ -30,12 +30,10 @@ class Orange extends Products {
 class Scale {
     scaleList: Array<number> = [];
     nameList: Array<string> = [];
-    listProducts: any[] = [];
 
     constructor() {}
 
     add(propduct: Products): void {
-        this.listProducts.push(propduct);
         this.scaleList.push(propduct.getScale());        
         this.nameList.push(propduct.getName());
     }

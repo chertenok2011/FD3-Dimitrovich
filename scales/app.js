@@ -39,10 +39,8 @@ var Scale = /** @class */ (function () {
     function Scale() {
         this.scaleList = [];
         this.nameList = [];
-        this.listProducts = [];
     }
     Scale.prototype.add = function (propduct) {
-        this.listProducts.push(propduct);
         this.scaleList.push(propduct.getScale());
         this.nameList.push(propduct.getName());
     };
