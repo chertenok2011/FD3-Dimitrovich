@@ -37,23 +37,26 @@ var Orange = /** @class */ (function (_super) {
 }(Products));
 var Scale = /** @class */ (function () {
     function Scale() {
-        this.scaleList = [];
-        this.nameList = [];
+        this.listProducts = [];
     }
     Scale.prototype.add = function (propduct) {
-        this.scaleList.push(propduct.getScale());
-        this.nameList.push(propduct.getName());
+        this.listProducts.push(propduct);
     };
     Scale.prototype.getSumScale = function () {
         var sum = 0;
-        for (var _i = 0, _a = this.scaleList; _i < _a.length; _i++) {
-            var value = _a[_i];
-            sum += value;
+        for (var _i = 0, _a = this.listProducts; _i < _a.length; _i++) {
+            var product = _a[_i];
+            sum += product.getScale();
         }
         return sum;
     };
     Scale.prototype.getNameList = function () {
-        return this.nameList;
+        var names = [];
+        for (var _i = 0, _a = this.listProducts; _i < _a.length; _i++) {
+            var product = _a[_i];
+            names.push(product.getName());
+        }
+        return names;
     };
     return Scale;
 }());

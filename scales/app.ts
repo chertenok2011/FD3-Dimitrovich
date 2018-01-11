@@ -28,24 +28,26 @@ class Orange extends Products {
 }
 
 class Scale {
-    scaleList: Array<number> = [];
-    nameList: Array<string> = [];
+    listProducts: Array<Products> = [];
 
-    constructor() {}
+    constructor() { }
 
     add(propduct: Products): void {
-        this.scaleList.push(propduct.getScale());        
-        this.nameList.push(propduct.getName());
+        this.listProducts.push(propduct);
     }
     getSumScale(): number {
         var sum: number = 0;
-        for (var value of this.scaleList){
-            sum += value;
+        for (var product of this.listProducts) {
+            sum += product.getScale();
         }
         return sum;
     }
     getNameList(): Array<string> {
-        return this.nameList;
+        var names: Array<string> = [];
+        for (var product of this.listProducts) {
+            names.push(product.getName());
+        }
+        return names;
     }
 }
 
