@@ -33,7 +33,7 @@ class Orange extends Product {
     }
 }
 
-class ScalesStorageEngineArray<StorageItem extends Product> {
+class ScalesStorageEngineArray<StorageItem extends Product> implements IStorageEngine {
     items: StorageItem[];
 
     constructor() {
@@ -55,7 +55,8 @@ class ScalesStorageEngineArray<StorageItem extends Product> {
     }
 }
 
-class ScalesStorageEngineLocalStorage<StorageItem extends Product> {
+class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IStorageEngine {
+
     addItem(item: StorageItem): number {
         let index: number = localStorage.length;
         localStorage.setItem(index.toString(), JSON.stringify(item));
@@ -110,7 +111,7 @@ class Scale<StorageItem extends Product, StorageEngine extends IStorageEngine> {
     }
 }
 
-var scale = new Scale<Apple, ScalesStorageEngineArray<Apple>>();
+var scale = new Scale<Apple, ScalesStorageEngineArray>();
 
 // var apple1 = new Apple("Apple 1", 200);
 // var apple2 = new Apple("Apple 2", 150);
