@@ -1,7 +1,7 @@
 interface IStorageEngine {
-    addItem(): number;
-    getItem(): any;
-    getCount(): number;
+    addItem(item: Product): number;
+    getItem(index: number): Product;
+    getCount(index: number): number;
 }
 
 class Product {
@@ -72,61 +72,38 @@ class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IS
     }
 }
 
-class Scale<StorageItem extends Product, StorageEngine extends IStorageEngine> {
-
-    listProducts: StorageItem[];
-
-    constructor() {
-        this.listProducts = [];
-    }
-
-    addItem(item: StorageItem): number {
-        let index: number = this.listProducts.length;
-        this.listProducts.push(item);
-        return index;
-    }
-
-    getItem(index: number): StorageItem {
-        return this.listProducts[index];
-    }
-
-    getCount(index: number): number {
-        return this.listProducts[index].getWeigh();
-    }
-
-    getSumScale(): number {
-        var sum: number = 0;
-        for (var product of this.listProducts) {
-            sum += product.getWeigh();
-        }
-        return sum;
-    }
-
-    getNameList(): Array<string> {
-        var names: Array<string> = [];
-        for (var product of this.listProducts) {
-            names.push(product.getName());
-        }
-        return names;
-    }
+function uniFactory<StorageEngine>(classRef: { new(): StorageEngine; }): StorageEngine {
+    return new classRef();
 }
 
-var scale = new Scale<Apple, ScalesStorageEngineArray>();
+var newStorageEngineArray: ScalesStorageEngineArray<Product> = uniFactory<ScalesStorageEngineArray<Product>>(ScalesStorageEngineArray);
+var newStorageEngineLocalStorage: ScalesStorageEngineLocalStorage<Product> = uniFactory<ScalesStorageEngineLocalStorage<Product>>(ScalesStorageEngineLocalStorage);
 
-// var apple1 = new Apple("Apple 1", 200);
-// var apple2 = new Apple("Apple 2", 150);
+console.log(newStorageEngineArray);
+console.log(newStorageEngineLocalStorage);
 
-// var orange1 = new Orange("Orange 1", 250);
-// var orange2 = new Orange("Orange 2", 270);
+class Scale<StorageEngine extends IStorageEngine> {
+    constructor() {
 
-// scale.addItem(apple1);
-// scale.addItem(apple2);
+    }
 
-// console.log(scale.getSumScale());
-// console.log(scale.getNameList());
+    // getSumScale(): number {
+    //     var sum: number = 0;
+    //     for (var product of this.listProducts) {
+    //         sum += product.getWeigh();
+    //     }
+    //     return sum;
+    // }
 
-// scale.addItem(orange1);
-// scale.addItem(orange2);
+    // getNameList(): Array<string> {
+    //     var names: Array<string> = [];
+    //     for (var product of this.listProducts) {
+    //         names.push(product.getName());
+    //     }
+    //     return names;
+    // }
+}
 
-// console.log(scale.getSumScale());
-// console.log(scale.getNameList());
+var scale = new Scale<ScalesStorageEngineArray<Apple>>();
+
+console.log(scale);

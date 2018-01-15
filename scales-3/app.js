@@ -68,50 +68,20 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     };
     return ScalesStorageEngineLocalStorage;
 }());
+function uniFactory(classRef) {
+    return new classRef();
+}
+// var newStorageEngineArray: ScalesStorageEngineArray<Product> = uniFactory<ScalesStorageEngineArray<Product>>(ScalesStorageEngineArray);
+// var newStorageEngineLocalStorage: ScalesStorageEngineLocalStorage<Product> = uniFactory<ScalesStorageEngineLocalStorage<Product>>(ScalesStorageEngineLocalStorage);
+// console.log(newStorageEngineArray);
+// console.log(newStorageEngineLocalStorage);
 var Scale = /** @class */ (function () {
     function Scale() {
-        this.listProducts = [];
+        this.newStorageEngineArray = uniFactory(ScalesStorageEngineArray);
+        this.newStorageEngineLocalStorage = uniFactory(ScalesStorageEngineLocalStorage);
     }
-    Scale.prototype.addItem = function (item) {
-        var index = this.listProducts.length;
-        this.listProducts.push(item);
-        return index;
-    };
-    Scale.prototype.getItem = function (index) {
-        return this.listProducts[index];
-    };
-    Scale.prototype.getCount = function (index) {
-        return this.listProducts[index].getWeigh();
-    };
-    Scale.prototype.getSumScale = function () {
-        var sum = 0;
-        for (var _i = 0, _a = this.listProducts; _i < _a.length; _i++) {
-            var product = _a[_i];
-            sum += product.getWeigh();
-        }
-        return sum;
-    };
-    Scale.prototype.getNameList = function () {
-        var names = [];
-        for (var _i = 0, _a = this.listProducts; _i < _a.length; _i++) {
-            var product = _a[_i];
-            names.push(product.getName());
-        }
-        return names;
-    };
     return Scale;
 }());
 var scale = new Scale();
-// var apple1 = new Apple("Apple 1", 200);
-// var apple2 = new Apple("Apple 2", 150);
-// var orange1 = new Orange("Orange 1", 250);
-// var orange2 = new Orange("Orange 2", 270);
-// scale.addItem(apple1);
-// scale.addItem(apple2);
-// console.log(scale.getSumScale());
-// console.log(scale.getNameList());
-// scale.addItem(orange1);
-// scale.addItem(orange2);
-// console.log(scale.getSumScale());
-// console.log(scale.getNameList()); 
+console.log(scale);
 //# sourceMappingURL=app.js.map
