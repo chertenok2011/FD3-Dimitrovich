@@ -116,11 +116,14 @@ var apple2 = new Apple("Apple 2", 150);
 var orange1 = new Orange("Orange 1", 250);
 var orange2 = new Orange("Orange 2", 270);
 
-scale.storageEngine.addItem(apple1);
-scale.storageEngine.addItem(apple2);
+var appleIndex1 = scale.storageEngine.addItem(apple1);
+var appleIndex1 = scale.storageEngine.addItem(apple2);
 
-scale.storageEngine.addItem(orange1);
-scale.storageEngine.addItem(orange2);
+var orangeIndex1 = scale.storageEngine.addItem(orange1);
+var orangeIndex2 = scale.storageEngine.addItem(orange2);
+
+console.log(scale.storageEngine.getItem(appleIndex1));
+console.log(scale.storageEngine.getCount(appleIndex1));
 
 //console.log(scale.getSumScale());
 //console.log(scale.getNameList());
