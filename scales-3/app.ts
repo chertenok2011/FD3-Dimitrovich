@@ -1,8 +1,3 @@
-interface IStorageEngine {
-    addItem(item: Product): number;
-    getItem(index: number): Product;
-    getCount(index: number): number;
-}
 
 class Product {
     name: string;
@@ -33,6 +28,12 @@ class Orange extends Product {
     }
 }
 
+interface IStorageEngine {
+    addItem(item: Product): number;
+    getItem(index: number): Product;
+    getCount(index: number): number;
+}
+
 class ScalesStorageEngineArray<StorageItem extends Product> implements IStorageEngine {
     items: StorageItem[];
 
@@ -56,7 +57,6 @@ class ScalesStorageEngineArray<StorageItem extends Product> implements IStorageE
 }
 
 class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IStorageEngine {
-
     addItem(item: StorageItem): number {
         let index: number = localStorage.length;
         localStorage.setItem(index.toString(), JSON.stringify(item));
@@ -79,13 +79,16 @@ function uniFactory<StorageEngine>(classRef: { new(): StorageEngine; }): Storage
 var newStorageEngineArray: ScalesStorageEngineArray<Product> = uniFactory<ScalesStorageEngineArray<Product>>(ScalesStorageEngineArray);
 var newStorageEngineLocalStorage: ScalesStorageEngineLocalStorage<Product> = uniFactory<ScalesStorageEngineLocalStorage<Product>>(ScalesStorageEngineLocalStorage);
 
-console.log(newStorageEngineArray);
-console.log(newStorageEngineLocalStorage);
+//console.log(newStorageEngineArray);
+//console.log(newStorageEngineLocalStorage);
 
 class Scale<StorageEngine extends IStorageEngine> {
-    constructor() {
 
-    }
+    storageEngine: StorageEngine;
+
+    constructor(_storageArray: StorageEngine) {
+        this.storageEngine = _storageArray;
+    }       
 
     // getSumScale(): number {
     //     var sum: number = 0;
@@ -104,6 +107,20 @@ class Scale<StorageEngine extends IStorageEngine> {
     // }
 }
 
-var scale = new Scale<ScalesStorageEngineArray<Apple>>();
 
-console.log(scale);
+var scale = new Scale(newStorageEngineArray);
+
+var apple1 = new Apple("Apple 1", 200);
+var apple2 = new Apple("Apple 2", 150);
+
+var orange1 = new Orange("Orange 1", 250);
+var orange2 = new Orange("Orange 2", 270);
+
+scale.storageEngine.addItem(apple1);
+scale.storageEngine.addItem(apple2);
+
+scale.storageEngine.addItem(orange1);
+scale.storageEngine.addItem(orange2);
+
+//console.log(scale.getSumScale());
+//console.log(scale.getNameList());
