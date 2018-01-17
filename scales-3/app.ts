@@ -92,7 +92,7 @@ class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IS
     getSumScale(): number {
         var sum: number = 0;
         for (var i = 0; i < localStorage.length; i++) {
-            var product:Product = <Product>JSON.parse(localStorage.getItem(i.toString()));
+            var product = <Product>JSON.parse(localStorage.getItem(i.toString()));
             sum += product.getWeigh();
         }
         return sum;
