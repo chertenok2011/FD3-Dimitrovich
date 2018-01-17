@@ -47,8 +47,24 @@ var ScalesStorageEngineArray = /** @class */ (function () {
     ScalesStorageEngineArray.prototype.getItem = function (index) {
         return this.items[index];
     };
-    ScalesStorageEngineArray.prototype.getCount = function (index) {
-        return this.items[index].getWeigh();
+    ScalesStorageEngineArray.prototype.getCount = function () {
+        return this.items.length;
+    };
+    ScalesStorageEngineArray.prototype.getSumScale = function () {
+        var sum = 0;
+        for (var _i = 0, _a = this.items; _i < _a.length; _i++) {
+            var product = _a[_i];
+            sum += product.getWeigh();
+        }
+        return sum;
+    };
+    ScalesStorageEngineArray.prototype.getNameList = function () {
+        var names = [];
+        for (var _i = 0, _a = this.items; _i < _a.length; _i++) {
+            var product = _a[_i];
+            names.push(product.getName());
+        }
+        return names;
     };
     return ScalesStorageEngineArray;
 }());
@@ -63,25 +79,45 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     ScalesStorageEngineLocalStorage.prototype.getItem = function (index) {
         return JSON.parse(localStorage.getItem(index.toString()));
     };
-    ScalesStorageEngineLocalStorage.prototype.getCount = function (index) {
-        return JSON.parse(localStorage.getItem(index.toString()))[index].getWeigh();
+    ScalesStorageEngineLocalStorage.prototype.getCount = function () {
+        return localStorage.length;
+    };
+    ScalesStorageEngineLocalStorage.prototype.getSumScale = function () {
+        var sum = 0;
+        for (var i = 0; i < localStorage.length; i++) {
+            var product = JSON.parse(localStorage.getItem(i.toString()));
+            sum += product.getWeigh();
+        }
+        return sum;
+    };
+    ScalesStorageEngineLocalStorage.prototype.getNameList = function () {
+        var names = [];
+        return names;
     };
     return ScalesStorageEngineLocalStorage;
 }());
-function uniFactory(classRef) {
-    return new classRef();
-}
-var newStorageEngineArray = uniFactory(ScalesStorageEngineArray);
-var newStorageEngineLocalStorage = uniFactory(ScalesStorageEngineLocalStorage);
-//console.log(newStorageEngineArray);
-//console.log(newStorageEngineLocalStorage);
+// function uniFactory<StorageEngine>(classRef: { new(): StorageEngine; }): StorageEngine {
+//     return new classRef();
+// }
+// var newStorageEngineArray: ScalesStorageEngineArray<Product> = uniFactory<ScalesStorageEngineArray<Product>>(ScalesStorageEngineArray);
+// var newStorageEngineLocalStorage: ScalesStorageEngineLocalStorage<Product> = uniFactory<ScalesStorageEngineLocalStorage<Product>>(ScalesStorageEngineLocalStorage);
+var newStorageEngineArray = new ScalesStorageEngineArray();
+var newStorageEngineLocalStorage = new ScalesStorageEngineLocalStorage();
+console.log(newStorageEngineArray);
+console.log(newStorageEngineLocalStorage);
 var Scale = /** @class */ (function () {
     function Scale(_storageArray) {
         this.storageEngine = _storageArray;
     }
+    Scale.prototype.getSumScale = function () {
+        return this.storageEngine.getSumScale();
+    };
+    Scale.prototype.getNameList = function () {
+        return this.storageEngine.getNameList();
+    };
     return Scale;
 }());
-var scale = new Scale(newStorageEngineArray);
+var scale = new Scale(newStorageEngineLocalStorage);
 var apple1 = new Apple("Apple 1", 200);
 var apple2 = new Apple("Apple 2", 150);
 var orange1 = new Orange("Orange 1", 250);
@@ -91,7 +127,7 @@ var appleIndex1 = scale.storageEngine.addItem(apple2);
 var orangeIndex1 = scale.storageEngine.addItem(orange1);
 var orangeIndex2 = scale.storageEngine.addItem(orange2);
 console.log(scale.storageEngine.getItem(appleIndex1));
-console.log(scale.storageEngine.getCount(appleIndex1));
-//console.log(scale.getSumScale());
-//console.log(scale.getNameList());
+console.log(scale.storageEngine.getCount());
+console.log(scale.storageEngine.getSumScale());
+console.log(scale.storageEngine.getNameList());
 //# sourceMappingURL=app.js.map
