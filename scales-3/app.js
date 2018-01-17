@@ -87,6 +87,7 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
         var sum = 0;
         for (var i = 0; i < localStorage.length; i++) {
             var product = JSON.parse(localStorage.getItem(i.toString()));
+            console.log(product instanceof Product);
             sum += product.getWeigh();
         }
         return sum;

@@ -95,6 +95,7 @@ class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IS
         var sum: number = 0;
         for (var i = 0; i < localStorage.length; i++) {
             var product = <Product>JSON.parse(localStorage.getItem(i.toString()));
+            console.log(product instanceof Product);
             sum += product.getWeigh();
         }
         return sum;
