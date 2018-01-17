@@ -1,4 +1,6 @@
 
+localStorage.clear();
+
 class Product {
     name: string;
     weigh: number;
@@ -92,7 +94,7 @@ class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IS
     getSumScale(): number {
         var sum: number = 0;
         for (var i = 0; i < localStorage.length; i++) {
-            var product = <Product>JSON.parse(localStorage.getItem(i.toString()));
+            var product:Product = JSON.parse(localStorage.getItem(i.toString()));
             sum += product.getWeigh();
         }
         return sum;
@@ -100,7 +102,10 @@ class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IS
 
     getNameList(): Array<string> {
         var names: Array<string> = [];
-
+        for (var i = 0; i < localStorage.length; i++) {
+            var product = <Product>JSON.parse(localStorage.getItem(i.toString()));
+            names.push(product.getName());
+        }
         return names;
     }
 }
@@ -134,7 +139,6 @@ class Scale<StorageEngine extends IStorageEngine> {
         return this.storageEngine.getNameList();
     }
 }
-
 
 var scale = new Scale(newStorageEngineLocalStorage);
 

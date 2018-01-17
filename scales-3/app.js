@@ -8,6 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+localStorage.clear();
 var Product = /** @class */ (function () {
     function Product(nameProduct, weighProduct) {
         this.name = nameProduct;
@@ -92,6 +93,10 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     };
     ScalesStorageEngineLocalStorage.prototype.getNameList = function () {
         var names = [];
+        for (var i = 0; i < localStorage.length; i++) {
+            var product = JSON.parse(localStorage.getItem(i.toString()));
+            names.push(product.getName());
+        }
         return names;
     };
     return ScalesStorageEngineLocalStorage;
