@@ -83,7 +83,7 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
         return JSON.parse(localStorage.getItem(index.toString()));
     };
     ScalesStorageEngineLocalStorage.prototype.getCount = function () {
-        return localStorage.length;
+        return this.keys.length;
     };
     ScalesStorageEngineLocalStorage.prototype.getSumScale = function () {
         var sum = 0;

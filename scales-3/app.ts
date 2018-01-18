@@ -31,8 +31,8 @@ class Orange extends Product {
 }
 
 interface IStorageEngine {
-    addItem(item: Product): number|string;
-    getItem(index: number|string): Product;
+    addItem(item: Product): number | string;
+    getItem(index: number | string): Product;
     getCount(): number;
     getSumScale(): number;
     getNameList(): Array<string>;
@@ -96,7 +96,7 @@ class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IS
     }
 
     getCount(): number {
-        return localStorage.length;
+        return this.keys.length;
     }
 
     getSumScale(): number {
