@@ -31,8 +31,8 @@ class Orange extends Product {
 }
 
 interface IStorageEngine {
-    addItem(item: Product): number;
-    getItem(index: number): Product;
+    addItem(item: Product): number|string;
+    getItem(index: number|string): Product;
     getCount(): number;
     getSumScale(): number;
     getNameList(): Array<string>;
@@ -77,13 +77,21 @@ class ScalesStorageEngineArray<StorageItem extends Product> implements IStorageE
 }
 
 class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IStorageEngine {
-    addItem(item: StorageItem): number {
-        let index: number = localStorage.length;
-        localStorage.setItem(index.toString(), JSON.stringify(item));
-        return index;
+
+    keys: Array<string>;
+
+    constructor() {
+        this.keys = [];
     }
 
-    getItem(index: number): StorageItem {
+    addItem(item: StorageItem): string {
+        let key: string = item.getName();
+        this.keys.push(key);
+        localStorage.setItem(key, JSON.stringify(item));
+        return key;
+    }
+
+    getItem(index: string): StorageItem {
         return JSON.parse(localStorage.getItem(index.toString()));
     }
 
@@ -93,36 +101,27 @@ class ScalesStorageEngineLocalStorage<StorageItem extends Product> implements IS
 
     getSumScale(): number {
         var sum: number = 0;
-        for (var i = 0; i < localStorage.length; i++) {
-            var product = <Product>JSON.parse(localStorage.getItem(i.toString()));
-            console.log(product instanceof Product);
-            sum += product.getWeigh();
+        for (var i = 0; i < this.keys.length; i++) {
+            let product = <Product>JSON.parse(localStorage.getItem(this.keys[i]));
+            let newProduct = new Product(product.name, product.weigh);
+            sum += newProduct.getWeigh();
         }
         return sum;
     }
 
     getNameList(): Array<string> {
         var names: Array<string> = [];
-        for (var i = 0; i < localStorage.length; i++) {
-            var product = <Product>JSON.parse(localStorage.getItem(i.toString()));
-            names.push(product.getName());
+        for (var i = 0; i < this.keys.length; i++) {
+            let product = <Product>JSON.parse(localStorage.getItem(this.keys[i]));
+            let newProduct = new Product(product.name, product.weigh);
+            names.push(newProduct.getName());
         }
         return names;
     }
 }
 
-// function uniFactory<StorageEngine>(classRef: { new(): StorageEngine; }): StorageEngine {
-//     return new classRef();
-// }
-
-// var newStorageEngineArray: ScalesStorageEngineArray<Product> = uniFactory<ScalesStorageEngineArray<Product>>(ScalesStorageEngineArray);
-// var newStorageEngineLocalStorage: ScalesStorageEngineLocalStorage<Product> = uniFactory<ScalesStorageEngineLocalStorage<Product>>(ScalesStorageEngineLocalStorage);
-
 var newStorageEngineArray: ScalesStorageEngineArray<Product> = new ScalesStorageEngineArray<Product>();
 var newStorageEngineLocalStorage: ScalesStorageEngineLocalStorage<Product> = new ScalesStorageEngineLocalStorage<Product>();
-
-console.log(newStorageEngineArray);
-console.log(newStorageEngineLocalStorage);
 
 class Scale<StorageEngine extends IStorageEngine> {
 

@@ -71,11 +71,13 @@ var ScalesStorageEngineArray = /** @class */ (function () {
 }());
 var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     function ScalesStorageEngineLocalStorage() {
+        this.keys = [];
     }
     ScalesStorageEngineLocalStorage.prototype.addItem = function (item) {
-        var index = localStorage.length;
-        localStorage.setItem(index.toString(), JSON.stringify(item));
-        return index;
+        var key = item.getName();
+        this.keys.push(key);
+        localStorage.setItem(key, JSON.stringify(item));
+        return key;
     };
     ScalesStorageEngineLocalStorage.prototype.getItem = function (index) {
         return JSON.parse(localStorage.getItem(index.toString()));
@@ -85,32 +87,26 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     };
     ScalesStorageEngineLocalStorage.prototype.getSumScale = function () {
         var sum = 0;
-        for (var i = 0; i < localStorage.length; i++) {
-            var product = JSON.parse(localStorage.getItem(i.toString()));
-            console.log(product instanceof Product);
-            sum += product.getWeigh();
+        for (var i = 0; i < this.keys.length; i++) {
+            var product = JSON.parse(localStorage.getItem(this.keys[i]));
+            var newProduct = new Product(product.name, product.weigh);
+            sum += newProduct.getWeigh();
         }
         return sum;
     };
     ScalesStorageEngineLocalStorage.prototype.getNameList = function () {
         var names = [];
-        for (var i = 0; i < localStorage.length; i++) {
-            var product = JSON.parse(localStorage.getItem(i.toString()));
-            names.push(product.getName());
+        for (var i = 0; i < this.keys.length; i++) {
+            var product = JSON.parse(localStorage.getItem(this.keys[i]));
+            var newProduct = new Product(product.name, product.weigh);
+            names.push(newProduct.getName());
         }
         return names;
     };
     return ScalesStorageEngineLocalStorage;
 }());
-// function uniFactory<StorageEngine>(classRef: { new(): StorageEngine; }): StorageEngine {
-//     return new classRef();
-// }
-// var newStorageEngineArray: ScalesStorageEngineArray<Product> = uniFactory<ScalesStorageEngineArray<Product>>(ScalesStorageEngineArray);
-// var newStorageEngineLocalStorage: ScalesStorageEngineLocalStorage<Product> = uniFactory<ScalesStorageEngineLocalStorage<Product>>(ScalesStorageEngineLocalStorage);
 var newStorageEngineArray = new ScalesStorageEngineArray();
 var newStorageEngineLocalStorage = new ScalesStorageEngineLocalStorage();
-console.log(newStorageEngineArray);
-console.log(newStorageEngineLocalStorage);
 var Scale = /** @class */ (function () {
     function Scale(_storageArray) {
         this.storageEngine = _storageArray;
