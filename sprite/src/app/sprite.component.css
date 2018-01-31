@@ -1,0 +1,11 @@
+.conteiner {
+    margin: 50px;
+}
+
+.image-container {
+    /* background-image: url('http://fe.it-academy.by/Examples/cards2.png'); */
+    background-repeat: no-repeat;
+    /* background-position: 0px 0px;  */
+    width: 143px;
+    height: 193px;
+}
