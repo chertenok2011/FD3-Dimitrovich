@@ -1,0 +1,12 @@
+<div class="conteiner">
+    <h3>{{getTitle()}}</h3>
+    <sprite 
+        [url]="getUrl()" 
+        [position]="getPosition()" 
+        [width]="getWidth()" 
+        [height]="getHeight()" 
+        (clicked)="clickedImg($event)"
+        >
+    </sprite>
+</div>
+

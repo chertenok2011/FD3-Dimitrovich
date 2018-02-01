@@ -1,6 +1,8 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="conteiner">
-    <h3>{{getTitle()}}</h3>
-    <div class="image-container" (click)="changePosition()" [style.backgroundImage]="'url('+ getSrc() +')'" [style.backgroundPosition]="'' + getPosition() + ''"></div>
+<div class="image-container" 
+    (click)="clicked.emit('-143px 0px')" 
+    [style.width]="getWidth()" 
+    [style.height]="getHeight()" 
+    [style.backgroundImage]="'url('+ getUrl() +')'" 
+    [style.backgroundPosition]="'' + getPosition() + ''"
+    >
 </div>
-

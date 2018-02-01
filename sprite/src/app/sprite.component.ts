@@ -1,29 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'app-root',
+    selector: 'sprite',
     templateUrl: 'sprite.component.html',
     styleUrls: ['sprite.component.css']
 })
 export class SpriteComponent {
-    private title:string = 'Sprite';
-    private src:string = 'http://fe.it-academy.by/Examples/cards2.png';
-    private position:string = '0px 0px';
 
-    getTitle():string {
-        return this.title;
+    @Input('url')
+    private url: string;
+
+    @Input('position')
+    private position: string;
+
+    @Input('width')
+    private width: string;
+
+    @Input('height')
+    private height: string;
+
+    @Output('clicked')
+    public clicked: EventEmitter<string> = new EventEmitter<string>();
+
+    getWidth() {
+        return this.width;
     };
 
-    getSrc():string {
-        return this.src;
-    }
+    getHeight() {
+        return this.height;
+    };
+    
+    getUrl() {
+        return this.url;
+    };
 
-    getPosition():string {
+    getPosition(): string {
         return this.position;
-    }
+    };
 
-    changePosition():void {
-        this.position = '-143px 0px';
-    }
 }
